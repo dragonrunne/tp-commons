@@ -1,0 +1,12 @@
+{
+	"env": {
+		"node": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 8
+	},
+	"extends": "eslint-config-lludol",
+	"rules": {
+		"require-jsdoc": "off"
+	}
+}

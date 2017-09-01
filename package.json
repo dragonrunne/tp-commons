@@ -1,0 +1,31 @@
+{
+  "name": "tp-commons",
+  "version": "0.0.1",
+  "description": "Commons methods use by every micro service",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "fix-code": "eslint . --fix",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Testpass-fr/tp-commons.git"
+  },
+  "author": "Ludovic Lerus <lludol03@gmail.com> (https://ludovic.ninja)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Testpass-fr/tp-commons/issues"
+  },
+  "homepage": "https://github.com/Testpass-fr/tp-commons#readme",
+  "devDependencies": {
+    "commitizen": "^2.9.6",
+    "eslint": "^4.5.0",
+    "eslint-config-lludol": "^0.1.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
