@@ -27,5 +27,8 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "graphql-apollo-errors": "^2.0.2"
   }
 }

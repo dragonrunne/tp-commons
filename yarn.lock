@@ -108,6 +108,12 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+boom@^4.2.0:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-4.3.1.tgz#4f8a3005cb4a7e3889f749030fd25b96e01d2e31"
+  dependencies:
+    hoek "4.x.x"
+
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -687,6 +693,14 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
+graphql-apollo-errors@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/graphql-apollo-errors/-/graphql-apollo-errors-2.0.2.tgz#af6724924520b6727e7820cb13b31886fd520a6f"
+  dependencies:
+    lodash "^4.17.4"
+    minilog "^3.1.0"
+    seven-boom "^1.0.3"
+
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -702,6 +716,10 @@ has@^1.0.1:
   resolved "https://registry.yarnpkg.com/has/-/has-1.0.1.tgz#8461733f538b0837c9361e39a9ab9e9704dc2f28"
   dependencies:
     function-bind "^1.0.2"
+
+hoek@4.x.x:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
 
 homedir-polyfill@^1.0.0:
   version "1.0.1"
@@ -1007,6 +1025,10 @@ merge@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/merge/-/merge-1.2.0.tgz#7531e39d4949c281a66b8c5a6e0265e8b05894da"
 
+microee@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/microee/-/microee-0.0.6.tgz#a12bdb0103681e8b126a9b071eba4c467c78fffe"
+
 micromatch@^2.3.7:
   version "2.3.11"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"
@@ -1028,6 +1050,12 @@ micromatch@^2.3.7:
 mimic-fn@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.1.0.tgz#e667783d92e89dbd342818b5230b9d62a672ad18"
+
+minilog@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/minilog/-/minilog-3.1.0.tgz#d2d0f1887ca363d1acf0ea86d5c4df293b3fb675"
+  dependencies:
+    microee "0.0.6"
 
 minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
@@ -1381,6 +1409,14 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.4.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.4.1.tgz#e059c09d8571f0540823733433505d3a2f00b18e"
 
+seven-boom@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/seven-boom/-/seven-boom-1.0.3.tgz#433038cd5f9e491607c374d3a23934be02e44473"
+  dependencies:
+    boom "^4.2.0"
+    lodash "^4.17.4"
+    uuid "^3.0.1"
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -1531,6 +1567,10 @@ typedarray@^0.0.6:
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
+
+uuid@^3.0.1:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
