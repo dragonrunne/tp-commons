@@ -3,6 +3,7 @@ const errorMiddleware = require('./libs/errorMiddleware');
 const moduleLoader = require('./libs/moduleLoader');
 const ModuleService = require('./libs/ModuleService');
 const Mongoose = require('./libs/Mongoose');
+const joiSchemas = require('./libs/joiSchemas');
 
 module.exports = {
 	asyncMiddleware,
@@ -10,4 +11,5 @@ module.exports = {
 	moduleLoader,
 	ModuleService,
 	Mongoose,
+	joiSchemas,
 };
