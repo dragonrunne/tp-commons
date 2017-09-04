@@ -12,6 +12,12 @@ class ModuleService {
 			_id: id,
 		});
 	}
+
+	getAll(query, limit = 0) {
+		return this.model
+			.find(query)
+			.limit(limit);
+	}
 }
 
 module.exports = ModuleService;
