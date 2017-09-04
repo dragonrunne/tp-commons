@@ -13,10 +13,14 @@ class ModuleService {
 		});
 	}
 
-	getAll(query, limit = 0) {
+	getAll(query = {}, limit = 0) {
 		return this.model
 			.find(query)
 			.limit(limit);
+	}
+
+	getAllPaginate(query, options) {
+		return this.model.paginate(query, options);
 	}
 }
 
