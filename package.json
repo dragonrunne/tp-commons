@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
-    "graphql-apollo-errors": "^2.0.2"
+    "graphql-apollo-errors": "^2.0.2",
+    "mongoose": "^4.11.10"
   }
 }
