@@ -22,6 +22,10 @@ class ModuleService {
 	getAllPaginate(query, options) {
 		return this.model.paginate(query, options);
 	}
+
+	removeById(id) {
+		return this.model.findByIdAndRemove(id);
+	}
 }
 
 module.exports = ModuleService;
