@@ -26,6 +26,10 @@ class ModuleService {
 	update(id, object) {
 		return this.model.findOneAndUpdate(id, object, { new: true });
 	}
+
+	removeById(id) {
+		return this.model.findByIdAndRemove(id);
+	}
 }
 
 module.exports = ModuleService;
