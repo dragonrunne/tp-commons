@@ -14,12 +14,18 @@ class Mongoose {
 		return mongoose.Schema.Types;
 	}
 
-	static createModel(modelName, schemaConfig, withPaginate = false) {
+	static createModel(modelName, schemaConfig, withPaginate = false, middlewares = {}) {
 		const schema = mongoose.Schema(schemaConfig);
 
 		if (withPaginate) {
 			schema.plugin(mongoosePaginate);
 		}
+
+		Object.keys(middlewares).forEach((action) => {
+			Object.keys(middlewares[action]).forEach((trigger) => {
+				schema[action](trigger, middlewares[action][trigger]);
+			});
+		});
 
 		return mongoose.model(modelName, schema);
 	}
