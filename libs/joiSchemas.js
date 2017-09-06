@@ -18,14 +18,12 @@ module.exports = {
 				name: 'objectId',
 				validate(params, value, state, options) {
 					if (!mongoose.Types.ObjectId.isValid(value)) {
-						return this.createError('string.objectId', {
-							v: value,
-						}, state, options);
+						return this.createError('objectId.objectId', { v: value }, state, options);
 					}
 
 					return value;
 				},
 			},
 		],
-	})),
+	})).objectId().objectId(),
 };
