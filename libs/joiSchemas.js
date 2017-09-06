@@ -6,6 +6,7 @@ module.exports = {
 	STRING:    joi.string().min(1),
 	ARRAY:     joi.array(),
 	OBJECT:    joi.object(),
+	BOOLEAN:   joi.boolean(),
 	OBJECT_ID: joi.extend((j) => ({
 		base:     j.string(),
 		name:     'objectId',
