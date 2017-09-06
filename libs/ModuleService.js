@@ -22,6 +22,10 @@ class ModuleService {
 	getAllPaginate(query, options) {
 		return this.model.paginate(query, options);
 	}
+
+	update(object) {
+		return this.model.findOneAndUpdate(object._id, object);
+	}
 }
 
 module.exports = ModuleService;
