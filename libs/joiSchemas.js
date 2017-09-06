@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 module.exports = {
 	NUMBER:    joi.number().min(0),
 	STRING:    joi.string().min(1),
+	ARRAY:     joi.array(),
+	OBJECT:    joi.object(),
 	OBJECT_ID: joi.extend((j) => ({
 		base:     j.string(),
 		name:     'objectId',
@@ -15,7 +17,9 @@ module.exports = {
 				name: 'objectId',
 				validate(params, value, state, options) {
 					if (!mongoose.Types.ObjectId.isValid(value)) {
-						return this.createError('string.objectId', { v: value }, state, options);
+						return this.createError('string.objectId', {
+							v: value,
+						}, state, options);
 					}
 
 					return value;

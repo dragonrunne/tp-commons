@@ -23,8 +23,8 @@ class ModuleService {
 		return this.model.paginate(query, options);
 	}
 
-	update(object) {
-		return this.model.findOneAndUpdate(object._id, object);
+	update(id, object) {
+		return this.model.findOneAndUpdate(id, object, { new: true });
 	}
 }
 
