@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 module.exports = {
 	NUMBER:    joi.number().min(0),
-	STRING:    joi.number().min(1),
+	STRING:    joi.string().min(1),
 	OBJECT_ID: joi.extend((j) => ({
 		base:     j.string(),
 		name:     'objectId',
