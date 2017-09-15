@@ -36,6 +36,12 @@ class ModuleService {
 			_id: id,
 		});
 	}
+
+	exists(id) {
+		return this.model.count({
+			_id: id,
+		}).then((length) => !!length);
+	}
 }
 
 module.exports = ModuleService;
