@@ -24,11 +24,17 @@ class ModuleService {
 	}
 
 	update(id, object) {
-		return this.model.findOneAndUpdate(id, object, { new: true });
+		return this.model.findOneAndUpdate({
+			_id: id,
+		}, object, {
+			new: true,
+		});
 	}
 
 	removeById(id) {
-		return this.model.findByIdAndRemove(id);
+		return this.model.findByIdAndRemove({
+			_id: id,
+		});
 	}
 }
 
