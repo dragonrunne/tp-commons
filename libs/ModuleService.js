@@ -3,6 +3,21 @@ class ModuleService {
 		this.model = model;
 	}
 
+	_generateSearchQuery(query) {
+		if (query.q && this.model.schema._indexes.length === 1 &&
+			this.model.schema._indexes[0].length === 2) {
+			query.$or = [];
+			const indexes = this.model.schema._indexes[0][0];
+			Object.keys(indexes).forEach((key) => {
+				const o = {};
+				o[key] = new RegExp(`^${query.q}`, 'i');
+				query.$or.push(o);
+			});
+		}
+		Reflect.deleteProperty(query, 'q');
+		return query;
+	}
+
 	create(object) {
 		return this.model.create(object);
 	}
@@ -14,12 +29,14 @@ class ModuleService {
 	}
 
 	getAll(query = {}, limit = 0) {
+		query = this._generateSearchQuery(query);
 		return this.model
 			.find(query)
 			.limit(limit);
 	}
 
 	getAllPaginate(query, options) {
+		query = this._generateSearchQuery(query);
 		return this.model.paginate(query, options);
 	}
 

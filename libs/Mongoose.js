@@ -14,26 +14,29 @@ class Mongoose {
 		return mongoose.Schema.Types;
 	}
 
-	static createModel(modelName, schemaConfig, automatics = {},
-		withPaginate = false, middlewares = {}) {
-		const schema = mongoose.Schema(schemaConfig, automatics);
+	static createModel(modelName, schemaConfig, options = {}) {
+		const schema = mongoose.Schema(schemaConfig, options.automatics);
 
-		if (withPaginate) {
+		if (options.withPaginate) {
 			schema.plugin(mongoosePaginate);
 		}
 
-		if (middlewares) {
-			if (middlewares.pre) {
-				Object.keys(middlewares.pre).forEach((trigger) => {
-					schema.pre(trigger, middlewares.pre[trigger]);
+		if (options.middlewares) {
+			if (options.middlewares.pre) {
+				Object.keys(options.middlewares.pre).forEach((trigger) => {
+					schema.pre(trigger, options.middlewares.pre[trigger]);
 				});
 			}
 
-			if (middlewares.post) {
-				Object.keys(middlewares.post).forEach((trigger) => {
-					schema.post(trigger, middlewares.post[trigger]);
+			if (options.middlewares.post) {
+				Object.keys(options.middlewares.post).forEach((trigger) => {
+					schema.post(trigger, options.middlewares.post[trigger]);
 				});
 			}
+		}
+
+		if (options.index) {
+			schema.index(options.index);
 		}
 
 		return mongoose.model(modelName, schema);
