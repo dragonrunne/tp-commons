@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 
+const providerEnum = ['fs', 'cloudinary'];
+
 class Mongoose {
 	static connect(mongoUri) {
 		mongoose.Promise = global.Promise;
@@ -12,6 +14,22 @@ class Mongoose {
 
 	static get Types() {
 		return mongoose.Schema.Types;
+	}
+
+	static get PICTURE() {
+		return {
+			type: {
+				url: {
+					type: String,
+				},
+				provider: {
+					type: String,
+					emum: providerEnum,
+				},
+			},
+			required: false,
+			default:  null,
+		};
 	}
 
 	static createModel(modelName, schemaConfig, options = {}) {
