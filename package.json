@@ -31,7 +31,12 @@
   "dependencies": {
 <<<<<<< 62d13a9859a5b1cb15854495ca1bc33284ea6c7f
     "cloudinary": "^1.9.0",
+<<<<<<< b58f1877761b567f944e70f75b108912d172437a
     "fs-extra": "^4.0.2",
+=======
+    "csv-parse": "^1.2.2",
+    "fast-csv": "^2.4.0",
+>>>>>>> feat(csv): first version
 =======
     "csv-parse": "^1.2.2",
     "fast-csv": "^2.4.0",
