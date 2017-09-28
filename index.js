@@ -7,6 +7,7 @@ const joiSchemas = require('./libs/joiSchemas');
 const CloudinaryStorage = require('./libs/storages/cloudinary.storage');
 const FsStorage = require('./libs/storages/fs.storage');
 const Storage = require('./libs/storages/storage');
+const CSV = require('./libs/CSV');
 
 module.exports = {
 	asyncMiddleware,
@@ -18,4 +19,5 @@ module.exports = {
 	CloudinaryStorage,
 	FsStorage,
 	Storage,
+	CSV,
 };
