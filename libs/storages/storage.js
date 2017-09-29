@@ -4,8 +4,8 @@ class Storage {
 		this.options = options;
 	}
 
-	upload(file) {
-		this.provider.upload(file, this.options.dist);
+	upload(file, name) {
+		return this.provider.upload(file, this.options.dist, name);
 	}
 }
 
