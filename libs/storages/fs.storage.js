@@ -10,8 +10,8 @@ class FsStorage {
 		return fs.outputFile(path.join(dist, scope, filename), data);
 	}
 
-	_createUrl(url, filename) {
-		return path.join(url, filename);
+	_createUrl(url, scope, filename) {
+		return path.join(url, scope, filename);
 	}
 
 	async upload(file, filename, { dist, url, scope }) {
@@ -20,7 +20,7 @@ class FsStorage {
 		if (scope && typeof scope !== 'string') throw (new Error('fs-invalid-scope'));
 
 		await this._createFile(dist, scope, filename, file.data);
-		return this._createUrl(url, filename);
+		return this._createUrl(url, scope, filename);
 	}
 }
 
