@@ -8,6 +8,8 @@ const CloudinaryStorage = require('./libs/storages/cloudinary.storage');
 const FsStorage = require('./libs/storages/fs.storage');
 const Storage = require('./libs/storages/storage');
 const CSV = require('./libs/CSV');
+const Fetch = require('./libs/Fetch');
+const microServices = require('./libs/microServices');
 
 module.exports = {
 	asyncMiddleware,
@@ -20,4 +22,6 @@ module.exports = {
 	FsStorage,
 	Storage,
 	CSV,
+	Fetch,
+	microServices,
 };

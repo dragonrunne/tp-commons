@@ -5,6 +5,9 @@
 	"parserOptions": {
 		"ecmaVersion": 8
 	},
+	"globals": {
+		"logger": true
+	},
 	"extends": "eslint-config-lludol",
 	"rules": {
 		"require-jsdoc": "off"
