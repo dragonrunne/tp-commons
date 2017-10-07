@@ -49,6 +49,14 @@ const ORGANIZATION = {
 	name: 'organizations',
 };
 
+/**
+ * TP_IMPEXP
+ */
+const IMPORT = {
+	url:  process.env.TP_IMPEXP || 'http://localhost:3004',
+	name: 'import',
+};
+
 module.exports = {
 	CATEGORY:  url.resolve(CATEGORY.url, CATEGORY.name),
 	METAMODEL: url.resolve(METAMODEL.url, METAMODEL.name),
@@ -60,4 +68,6 @@ module.exports = {
 	AFFILIATE:    url.resolve(AFFILIATE.url, AFFILIATE.name),
 	BRAND:        url.resolve(BRAND.url, BRAND.name),
 	ORGANIZATION: url.resolve(ORGANIZATION.url, ORGANIZATION.name),
+
+	IMPORT: url.resolve(IMPORT.url, IMPORT.name),
 };
