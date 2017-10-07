@@ -1,4 +1,4 @@
-const path = require('path');
+const url = require('url');
 
 /**
  * TP_PM
@@ -50,14 +50,14 @@ const ORGANIZATION = {
 };
 
 module.exports = {
-	CATEGORY:  path.join(CATEGORY.url, CATEGORY.name),
-	METAMODEL: path.join(METAMODEL.url, METAMODEL.name),
-	PRODUCT:   path.join(PRODUCT.url, PRODUCT.name),
+	CATEGORY:  url.resolve(CATEGORY.url, CATEGORY.name),
+	METAMODEL: url.resolve(METAMODEL.url, METAMODEL.name),
+	PRODUCT:   url.resolve(PRODUCT.url, PRODUCT.name),
 
-	STOCK:         path.join(STOCK.url, STOCK.name),
-	STOCK_ACCOUNT: path.join(STOCK_ACCOUNT.url, STOCK_ACCOUNT.name),
+	STOCK:         url.resolve(STOCK.url, STOCK.name),
+	STOCK_ACCOUNT: url.resolve(STOCK_ACCOUNT.url, STOCK_ACCOUNT.name),
 
-	AFFILIATE:    path.join(AFFILIATE.url, AFFILIATE.name),
-	BRAND:        path.join(BRAND.url, BRAND.name),
-	ORGANIZATION: path.join(ORGANIZATION.url, ORGANIZATION.name),
+	AFFILIATE:    url.resolve(AFFILIATE.url, AFFILIATE.name),
+	BRAND:        url.resolve(BRAND.url, BRAND.name),
+	ORGANIZATION: url.resolve(ORGANIZATION.url, ORGANIZATION.name),
 };
