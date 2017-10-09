@@ -90,7 +90,7 @@ class Fetch {
 			});
 	}
 
-	static upload(url, file) {
+	static upload(url, file, params = {}) {
 		const formData = new FormData();
 
 		formData.append('file', file.buffer);
@@ -98,6 +98,10 @@ class Fetch {
 		formData.append('mimetype', file.mimetype);
 		formData.append('originalname', file.originalname);
 		formData.append('size', file.size);
+
+		Object.keys(params).forEach((key) => {
+			formData.append(key, params[key]);
+		});
 
 		return fetch(url, {
 			method:  'POST',
