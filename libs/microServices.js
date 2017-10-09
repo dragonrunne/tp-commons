@@ -58,16 +58,43 @@ const IMPORT = {
 };
 
 module.exports = {
-	CATEGORY:  url.resolve(CATEGORY.url, CATEGORY.name),
-	METAMODEL: url.resolve(METAMODEL.url, METAMODEL.name),
-	PRODUCT:   url.resolve(PRODUCT.url, PRODUCT.name),
+	CATEGORY: {
+		url:  url.resolve(CATEGORY.url, CATEGORY.name),
+		name: CATEGORY.name,
+	},
+	METAMODEL: {
+		url:  url.resolve(METAMODEL.url, METAMODEL.name),
+		name: METAMODEL.name,
+	},
+	PRODUCT: {
+		url:  url.resolve(PRODUCT.url, PRODUCT.name),
+		name: PRODUCT.name,
+	},
 
-	STOCK:         url.resolve(STOCK.url, STOCK.name),
-	STOCK_ACCOUNT: url.resolve(STOCK_ACCOUNT.url, STOCK_ACCOUNT.name),
+	STOCK: {
+		url:  url.resolve(STOCK.url, STOCK.name),
+		name: STOCK.name,
+	},
+	STOCK_ACCOUNT: {
+		url:  url.resolve(STOCK_ACCOUNT.url, STOCK_ACCOUNT.name),
+		name: STOCK_ACCOUNT.name,
+	},
 
-	AFFILIATE:    url.resolve(AFFILIATE.url, AFFILIATE.name),
-	BRAND:        url.resolve(BRAND.url, BRAND.name),
-	ORGANIZATION: url.resolve(ORGANIZATION.url, ORGANIZATION.name),
+	AFFILIATE: {
+		url:  url.resolve(AFFILIATE.url, AFFILIATE.name),
+		name: AFFILIATE.name,
+	},
+	BRAND: {
+		url:  url.resolve(BRAND.url, BRAND.name),
+		name: BRAND.name,
+	},
+	ORGANIZATION: {
+		url:  url.resolve(ORGANIZATION.url, ORGANIZATION.name),
+		name: ORGANIZATION.name,
+	},
 
-	IMPORT: url.resolve(IMPORT.url, IMPORT.name),
+	IMPORT: {
+		url:  url.resolve(IMPORT.url, IMPORT.name),
+		name: IMPORT.name,
+	},
 };
