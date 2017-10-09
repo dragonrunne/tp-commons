@@ -54,6 +54,18 @@ class CSV {
 				});
 		});
 	}
+
+	static save(path, data) {
+		return new Promise((resolve) => {
+			csv
+				.writeToPath(path, data, {
+					headers: true,
+				})
+				.on('finish', () => {
+					resolve();
+				});
+		});
+	}
 }
 
 module.exports = CSV;
