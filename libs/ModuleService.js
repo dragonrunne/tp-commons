@@ -22,8 +22,12 @@ class ModuleService {
 		return this.model.create(object);
 	}
 
+	getOne(query) {
+		return this.model.findOne(query);
+	}
+
 	getById(id) {
-		return this.model.findOne({
+		return this.getOne({
 			_id: id,
 		});
 	}
