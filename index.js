@@ -10,6 +10,7 @@ const Storage = require('./libs/storages/storage');
 const CSV = require('./libs/CSV');
 const Fetch = require('./libs/Fetch');
 const microServices = require('./libs/microServices');
+const MicroService = require('./libs/MicroService');
 
 module.exports = {
 	asyncMiddleware,
@@ -24,4 +25,5 @@ module.exports = {
 	CSV,
 	Fetch,
 	microServices,
+	MicroService,
 };
