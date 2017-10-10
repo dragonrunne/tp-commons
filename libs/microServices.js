@@ -39,6 +39,11 @@ const AFFILIATE = {
 	name: 'affiliates',
 };
 
+const AUTH_BACK = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'authBack',
+};
+
 const BRAND = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'brands',
@@ -47,6 +52,11 @@ const BRAND = {
 const ORGANIZATION = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'organizations',
+};
+
+const USER_BACK = {
+	url:  process.env.TP_PM_URL || 'http://localhost:3003',
+	name: 'usersBack',
 };
 
 /**
@@ -84,6 +94,10 @@ module.exports = {
 		url:  url.resolve(AFFILIATE.url, AFFILIATE.name),
 		name: AFFILIATE.name,
 	},
+	AUTH_BACK: {
+		url:  url.resolve(AUTH_BACK.url, '/auth/back'),
+		name: AUTH_BACK.name,
+	},
 	BRAND: {
 		url:  url.resolve(BRAND.url, BRAND.name),
 		name: BRAND.name,
@@ -91,6 +105,10 @@ module.exports = {
 	ORGANIZATION: {
 		url:  url.resolve(ORGANIZATION.url, ORGANIZATION.name),
 		name: ORGANIZATION.name,
+	},
+	USER_BACK: {
+		url:  url.resolve(USER_BACK.url, '/users/back'),
+		name: USER_BACK.name,
 	},
 
 	IMPORT: {
