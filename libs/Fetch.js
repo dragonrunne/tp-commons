@@ -17,13 +17,17 @@ if (!global.logger) {
  * A wrapper around node-fetch to handle JSON and errors.
  */
 class Fetch {
-	/**
-	 * Fetch a micro service by giving an url and return JSON data..
-	 * @param {String} url - The micro service url.
-	 * @param {Object} params - URL parameters
-	 * @return {Promise} A Promise with the JSON data.
-	 */
-	static get(url, params = null) {
+	static generateHeaders(headers) {
+		const microServiceHeaders = {};
+
+		if (headers.authorization) {
+			microServiceHeaders.Authorization = headers.authorization;
+		}
+
+		return microServiceHeaders;
+	}
+
+	static get(headers, url, params = null) {
 		const ObjectURL = new URL(url);
 
 		if (params) {
@@ -32,7 +36,8 @@ class Fetch {
 		}
 
 		return fetch(ObjectURL.href, {
-			method: 'GET',
+			method:  'GET',
+			headers: Fetch.generateHeaders(headers),
 		})
 			.then((res) => res.json())
 			.then((json) => {
