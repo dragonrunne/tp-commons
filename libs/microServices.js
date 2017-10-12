@@ -67,6 +67,14 @@ const IMPORT = {
 	name: 'import',
 };
 
+/**
+ * TP_CM
+ */
+const LOCALE = {
+	url:  process.env.TP_CM || 'http://localhost:3005',
+	name: 'locales',
+};
+
 module.exports = {
 	CATEGORY: {
 		url:  url.resolve(CATEGORY.url, CATEGORY.name),
@@ -114,5 +122,10 @@ module.exports = {
 	IMPORT: {
 		url:  url.resolve(IMPORT.url, IMPORT.name),
 		name: IMPORT.name,
+	},
+
+	LOCALE: {
+		url:  url.resolve(LOCALE.url, LOCALE.name),
+		name: LOCALE.name,
 	},
 };
