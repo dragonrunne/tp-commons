@@ -63,7 +63,7 @@ const USER_BACK = {
  * TP_IMPEXP
  */
 const IMPORT = {
-	url:  process.env.TP_IMPEXP || 'http://localhost:3004',
+	url:  process.env.TP_IMPEXP_URL || 'http://localhost:3004',
 	name: 'import',
 };
 
@@ -71,7 +71,7 @@ const IMPORT = {
  * TP_CM
  */
 const LOCALE = {
-	url:  process.env.TP_CM || 'http://localhost:3005',
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
 	name: 'locales',
 };
 
@@ -118,12 +118,10 @@ module.exports = {
 		url:  url.resolve(USER_BACK.url, '/users/back'),
 		name: USER_BACK.name,
 	},
-
 	IMPORT: {
 		url:  url.resolve(IMPORT.url, IMPORT.name),
 		name: IMPORT.name,
 	},
-
 	LOCALE: {
 		url:  url.resolve(LOCALE.url, LOCALE.name),
 		name: LOCALE.name,
