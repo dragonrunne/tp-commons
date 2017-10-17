@@ -49,11 +49,11 @@ class Fetch {
 			});
 	}
 
-	static post(url, body) {
+	static post(headers, url, body) {
 		return fetch(url, {
 			method:  'POST',
 			body:    JSON.stringify(body),
-			headers: defaultHeader,
+			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -65,11 +65,11 @@ class Fetch {
 			});
 	}
 
-	static put(url, body) {
+	static put(headers, url, body) {
 		return fetch(url, {
 			method:  'PUT',
 			body:    JSON.stringify(body),
-			headers: defaultHeader,
+			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -81,9 +81,10 @@ class Fetch {
 			});
 	}
 
-	static delete(url) {
+	static delete(headers, url) {
 		return fetch(url, {
-			method: 'DELETE',
+			method:  'DELETE',
+			headers: Fetch.generateHeaders(headers),
 		})
 			.then((res) => res.json())
 			.then((json) => {
