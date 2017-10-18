@@ -49,6 +49,14 @@ class Fetch {
 			});
 	}
 
+	static getFile(headers, url) {
+		return fetch(url, {
+			method:  'GET',
+			headers: headers || {},
+		})
+			.then((res) => res.body);
+	}
+
 	static post(headers, url, body) {
 		return fetch(url, {
 			method:  'POST',
