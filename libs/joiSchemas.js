@@ -14,7 +14,7 @@ module.exports = {
 	LANGUAGE:      joi.string().min(2).regex(/^[a-z]{2}$/),
 	PICTURE:       joi.any(),
 	OBJECT_ID:     joi.extend((j) => ({
-		base:     j.string(),
+		base:     j.any(),
 		name:     'objectId',
 		language: {
 			objectId: 'invalid ObjectId',
@@ -23,6 +23,9 @@ module.exports = {
 			{
 				name: 'objectId',
 				validate(params, value, state, options) {
+					if (value === null || value === 'null') {
+						return null;
+					}
 					if (!mongoose.Types.ObjectId.isValid(value)) {
 						return this.createError('objectId.objectId', { v: value }, state, options);
 					}
