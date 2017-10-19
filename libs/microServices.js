@@ -18,18 +18,16 @@ const PRODUCT = {
 	name: 'products',
 };
 
-/**
- * TP_SM
- */
 const STOCK = {
-	url:  process.env.TP_SM_URL || 'http://localhost:3001',
+	url:  process.env.TP_SM_URL || 'http://localhost:3002',
 	name: 'stocks',
 };
 
 const STOCK_ACCOUNT = {
-	url:  process.env.TP_SM_URL || 'http://localhost:3001',
+	url:  process.env.TP_SM_URL || 'http://localhost:3002',
 	name: 'stockAccounts',
 };
+
 
 /**
  * TP_UM
@@ -93,7 +91,6 @@ module.exports = {
 		url:  url.resolve(PRODUCT.url, PRODUCT.name),
 		name: PRODUCT.name,
 	},
-
 	STOCK: {
 		url:  url.resolve(STOCK.url, STOCK.name),
 		name: STOCK.name,
