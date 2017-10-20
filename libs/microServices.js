@@ -53,7 +53,7 @@ const ORGANIZATION = {
 };
 
 const USER_BACK = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3003',
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'usersBack',
 };
 
