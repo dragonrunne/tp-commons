@@ -19,12 +19,12 @@ const PRODUCT = {
 };
 
 const STOCK = {
-	url:  process.env.TP_SM_URL || 'http://localhost:3002',
+	url: process.env.TP_PM_URL || 'http://localhost:3002',
 	name: 'stocks',
 };
 
 const STOCK_ACCOUNT = {
-	url:  process.env.TP_SM_URL || 'http://localhost:3002',
+	url: process.env.TP_PM_URL || 'http://localhost:3002',
 	name: 'stockAccounts',
 };
 
