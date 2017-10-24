@@ -4,27 +4,27 @@ const url = require('url');
  * TP_PM
  */
 const CATEGORY = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3002',
+	url:  process.env.TP_PM_URL || 'http://localhost:3001',
 	name: 'categories',
 };
 
 const METAMODEL = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3002',
+	url:  process.env.TP_PM_URL || 'http://localhost:3001',
 	name: 'metamodels',
 };
 
 const PRODUCT = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3002',
+	url:  process.env.TP_PM_URL || 'http://localhost:3001',
 	name: 'products',
 };
 
 const STOCK = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3002',
+	url:  process.env.TP_PM_URL || 'http://localhost:3001',
 	name: 'stocks',
 };
 
 const STOCK_ACCOUNT = {
-	url:  process.env.TP_PM_URL || 'http://localhost:3002',
+	url:  process.env.TP_PM_URL || 'http://localhost:3001',
 	name: 'stockAccounts',
 };
 
