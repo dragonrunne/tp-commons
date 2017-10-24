@@ -28,6 +28,18 @@ const STOCK_ACCOUNT = {
 	name: 'stockAccounts',
 };
 
+/**
+ * TP_BM
+ */
+const BOOKING = {
+	url:  process.env.TP_BM_URL || 'http://localhost:3002',
+	name: 'bookings',
+};
+
+const EVENT = {
+	url:  process.env.TP_BM_URL || 'http://localhost:3002',
+	name: 'events',
+};
 
 /**
  * TP_UM
@@ -98,6 +110,15 @@ module.exports = {
 	STOCK_ACCOUNT: {
 		url:  url.resolve(STOCK_ACCOUNT.url, STOCK_ACCOUNT.name),
 		name: STOCK_ACCOUNT.name,
+	},
+
+	BOOKING: {
+		url:  url.resolve(BOOKING.url, BOOKING.name),
+		name: BOOKING.name,
+	},
+	EVENT: {
+		url:  url.resolve(EVENT.url, EVENT.name),
+		name: EVENT.name,
 	},
 
 	AFFILIATE: {
