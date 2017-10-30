@@ -63,6 +63,10 @@ class ModuleService {
 			_id: id,
 		}).then((length) => !!length);
 	}
+
+	count(query) {
+		return this.model.count(query);
+	}
 }
 
 module.exports = ModuleService;
