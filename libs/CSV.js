@@ -31,6 +31,9 @@ class CSV {
 		return new Promise((resolve, reject) => {
 			stream
 				.pipe(csv(options))
+				.on('error', (err) => {
+					throw new Error(err);
+				})
 				.on('data', (data) => {
 					++currentLine;
 					data = _.mapValues(data, (value) => (value === '' ? null : value));
