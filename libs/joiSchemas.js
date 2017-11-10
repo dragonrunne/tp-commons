@@ -13,6 +13,7 @@ module.exports = {
 	DATE:          joi.date(),
 	LANGUAGE:      joi.string().min(2).regex(/^[a-z]{2}$/),
 	PICTURE:       joi.any(),
+	EMAIL:         joi.string().email(),
 	OBJECT_ID:     joi.extend((j) => ({
 		base:     j.any(),
 		name:     'objectId',
