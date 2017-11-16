@@ -12,7 +12,7 @@ class FsStorage {
 	}
 
 	_createUrl(url, scope, filename) {
-		return new URL(url, scope, filename).href;
+		return new URL(`${url}/${scope}/${filename}`).href;
 	}
 
 	async upload(file, filename, { dist, url, scope }) {
