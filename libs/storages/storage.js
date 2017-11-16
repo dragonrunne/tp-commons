@@ -1,7 +1,7 @@
 class Storage {
 	use(Provider, options) {
 		this.provider = new Provider();
-		this.options = options;
+		this.options = options || {};
 	}
 
 	async upload(file, name, scope = '') {

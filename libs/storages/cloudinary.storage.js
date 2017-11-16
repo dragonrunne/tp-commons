@@ -1,14 +1,16 @@
 const Cloudinary = require('cloudinary');
 
 class CloudinaryStorage {
-	upload(file, name) {
+	constructor() {
+		this.name = 'cloudinary';
+	}
+
+	upload(file) {
 		return new Promise((resolve, reject) => {
 			try {
-				Cloudinary.upload_stream((result) => resolve({
-					provider: 'cloudinary',
-					url:      result.url,
-					name,
-				})).end(file.data);
+				Cloudinary.uploader.upload_stream((result) => {
+					resolve(result.url);
+				}).end(file.data);
 			} catch (e) {
 				reject(e);
 			}
