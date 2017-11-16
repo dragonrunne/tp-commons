@@ -4,11 +4,11 @@ class Storage {
 		this.options = options || {};
 	}
 
-	async upload(file, name, scope = '') {
+	async upload(data, name, scope = '') {
 		if (scope) {
 			this.options.scope = scope;
 		}
-		const url = await this.provider.upload(file, name, this.options);
+		const url = await this.provider.upload(data, name, this.options);
 		return {
 			provider: this.provider.name,
 			url,

@@ -5,12 +5,12 @@ class CloudinaryStorage {
 		this.name = 'cloudinary';
 	}
 
-	upload(file) {
+	upload(data) {
 		return new Promise((resolve, reject) => {
 			try {
 				Cloudinary.uploader.upload_stream((result) => {
 					resolve(result.url);
-				}).end(file.data);
+				}).end(data);
 			} catch (e) {
 				reject(e);
 			}
