@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const { URL } = require('url');
 
 class FsStorage {
 	constructor() {
@@ -11,7 +12,7 @@ class FsStorage {
 	}
 
 	_createUrl(url, scope, filename) {
-		return path.join(url, scope, filename);
+		return new URL(url, scope, filename).href;
 	}
 
 	async upload(file, filename, { dist, url, scope }) {
