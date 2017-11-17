@@ -90,6 +90,11 @@ const LOCALE = {
 	name: 'locales',
 };
 
+const PDF = {
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
+	name: 'pdfs',
+};
+
 module.exports = {
 	CATEGORY: {
 		url:  url.resolve(CATEGORY.url, CATEGORY.name),
@@ -154,5 +159,9 @@ module.exports = {
 	LOCALE: {
 		url:  url.resolve(LOCALE.url, LOCALE.name),
 		name: LOCALE.name,
+	},
+	PDF: {
+		url:  url.resolve(PDF.url, PDF.name),
+		name: PDF.name,
 	},
 };
