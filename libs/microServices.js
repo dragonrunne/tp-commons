@@ -90,6 +90,11 @@ const LOCALE = {
 	name: 'locales',
 };
 
+const MAIL = {
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
+	name: 'mails',
+};
+
 const PDF = {
 	url:  process.env.TP_CM_URL || 'http://localhost:3005',
 	name: 'pdfs',
@@ -159,6 +164,10 @@ module.exports = {
 	LOCALE: {
 		url:  url.resolve(LOCALE.url, LOCALE.name),
 		name: LOCALE.name,
+	},
+	MAIL: {
+		url:  url.resolve(MAIL.url, MAIL.name),
+		name: MAIL.name,
 	},
 	PDF: {
 		url:  url.resolve(PDF.url, PDF.name),
