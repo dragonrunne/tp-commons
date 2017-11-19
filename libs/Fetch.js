@@ -24,6 +24,10 @@ class Fetch {
 			microServiceHeaders.Authorization = headers.authorization;
 		}
 
+		if (headers['accept-language']) {
+			microServiceHeaders['accept-language'] = headers['accept-language'];
+		}
+
 		return microServiceHeaders;
 	}
 
