@@ -11,6 +11,7 @@ const CSV = require('./libs/CSV');
 const Fetch = require('./libs/Fetch');
 const microServices = require('./libs/microServices');
 const MicroService = require('./libs/MicroService');
+const CommonsHelper = require('./libs/commonsHelper');
 
 module.exports = {
 	asyncMiddleware,
@@ -26,4 +27,5 @@ module.exports = {
 	Fetch,
 	microServices,
 	MicroService,
+	CommonsHelper,
 };
