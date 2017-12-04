@@ -69,6 +69,11 @@ const USER_BACK = {
 	name: 'usersBack',
 };
 
+const USER_FRONT = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'usersFront',
+};
+
 /**
  * TP_IMPEXP
  */
@@ -150,6 +155,10 @@ module.exports = {
 	USER_BACK: {
 		url:  url.resolve(USER_BACK.url, '/users/back'),
 		name: USER_BACK.name,
+	},
+	USER_FRONT: {
+		url:  url.resolve(USER_FRONT.url, '/users/front'),
+		name: USER_FRONT.name,
 	},
 
 	IMPORT: {
