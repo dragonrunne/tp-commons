@@ -41,6 +41,11 @@ const EVENT = {
 	name: 'events',
 };
 
+const SLOT = {
+	url:  process.env.TP_BM_URL || 'http://localhost:3002',
+	name: 'slots',
+};
+
 /**
  * TP_UM
  */
@@ -134,6 +139,10 @@ module.exports = {
 	EVENT: {
 		url:  url.resolve(EVENT.url, EVENT.name),
 		name: EVENT.name,
+	},
+	SLOT: {
+		url:  url.resolve(SLOT.url, SLOT.name),
+		name: SLOT.name,
 	},
 
 	AFFILIATE: {
