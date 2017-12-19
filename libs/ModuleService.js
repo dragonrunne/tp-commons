@@ -40,6 +40,9 @@ class ModuleService {
 	}
 
 	getAllPaginate(query, options) {
+		if (options.hasOwnProperty('limit') && options.limit === 0) {
+			options.limit = Number.MAX_SAFE_INTEGER;
+		}
 		query = this._generateSearchQuery(query);
 		return this.model.paginate(query, options);
 	}
