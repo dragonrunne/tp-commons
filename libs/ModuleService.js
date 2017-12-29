@@ -1,3 +1,5 @@
+const MAX_SAFE_INTEGER_32BITS = (2 ** 20) - 1;
+
 class ModuleService {
 	constructor(model) {
 		this.model = model;
@@ -41,7 +43,7 @@ class ModuleService {
 
 	getAllPaginate(query, options) {
 		if (options.hasOwnProperty('limit') && options.limit === 0) {
-			options.limit = Number.MAX_SAFE_INTEGER;
+			options.limit = MAX_SAFE_INTEGER_32BITS;
 		}
 		query = this._generateSearchQuery(query);
 		return this.model.paginate(query, options);
