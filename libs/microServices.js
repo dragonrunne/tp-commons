@@ -59,6 +59,11 @@ const AUTH_BACK = {
 	name: 'authBack',
 };
 
+const AUTH_FRONT = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'authFront',
+};
+
 const BRAND = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'brands',
@@ -152,6 +157,10 @@ module.exports = {
 	AUTH_BACK: {
 		url:  url.resolve(AUTH_BACK.url, '/auth/back'),
 		name: AUTH_BACK.name,
+	},
+	AUTH_FRONT: {
+		url:  url.resolve(AUTH_FRONT.url, '/auth/front'),
+		name: AUTH_FRONT.name,
 	},
 	BRAND: {
 		url:  url.resolve(BRAND.url, BRAND.name),
