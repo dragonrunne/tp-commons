@@ -6,7 +6,7 @@ module.exports = {
 	joi,
 	validateAsync: promisify(joi.validate),
 	NUMBER:        joi.number().min(0),
-	STRING:        joi.string(),
+	STRING:        joi.string().allow(''),
 	ARRAY:         joi.array(),
 	OBJECT:        joi.object(),
 	BOOLEAN:       joi.boolean(),
