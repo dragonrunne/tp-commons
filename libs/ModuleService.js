@@ -63,6 +63,10 @@ class ModuleService {
 		});
 	}
 
+	remove(query) {
+		return this.model.remove(query);
+	}
+
 	exists(id) {
 		return this.model.count({
 			_id: id,
