@@ -43,7 +43,7 @@ class ModuleService {
 
 	getAllPaginate(query, options) {
 		if (options.hasOwnProperty('limit') && options.limit === 0) {
-			options.limit = MAX_SAFE_INTEGER_32BITS;
+			options.limit = 10000;
 		}
 		query = this._generateSearchQuery(query);
 		return this.model.paginate(query, options);
