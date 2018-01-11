@@ -115,6 +115,11 @@ const PDF = {
 	name: 'pdfs',
 };
 
+const ARTICLE = {
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
+	name: 'articles',
+};
+
 module.exports = {
 	CATEGORY: {
 		url:  url.resolve(CATEGORY.url, CATEGORY.name),
@@ -199,5 +204,9 @@ module.exports = {
 	PDF: {
 		url:  url.resolve(PDF.url, PDF.name),
 		name: PDF.name,
+	},
+	ARTICLE: {
+		url:  url.resolve(ARTICLE.url, ARTICLE.name),
+		name: ARTICLE.name,
 	},
 };
