@@ -42,6 +42,7 @@ class Fetch {
 		return fetch(ObjectURL.href, {
 			method:  'GET',
 			headers: Fetch.generateHeaders(headers),
+			timeout: 0,
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -58,6 +59,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'GET',
 			headers: headers || {},
+			timeout: 0,
 		})
 			.then((res) => {
 				logger.info('getFile 2', url);
@@ -70,6 +72,7 @@ class Fetch {
 			method:  'POST',
 			body:    JSON.stringify(body),
 			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
+			timeout: 0,
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -86,6 +89,7 @@ class Fetch {
 			method:  'PUT',
 			body:    JSON.stringify(body),
 			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
+			timeout: 0,
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -101,6 +105,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'DELETE',
 			headers: Fetch.generateHeaders(headers),
+			timeout: 0,
 		})
 			.then((res) => res.json())
 			.then((json) => {
@@ -129,6 +134,7 @@ class Fetch {
 			method:  'POST',
 			body:    formData,
 			headers: multipartHeader,
+			timeout: 0,
 		})
 			.then((res) => res.json())
 			.then((json) => {
