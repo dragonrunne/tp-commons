@@ -32,6 +32,21 @@ class Mongoose {
 		};
 	}
 
+	static get USERS_CUSTOM_FIELDS() {
+		return {
+			type: [{
+				key:          String,
+				type:         { type: String },
+				labels:       Mongoose.Types.Mixed,
+				required:     Boolean,
+				needs_info:   Boolean,
+				informations: Mongoose.Types.Mixed,
+			}],
+			required: false,
+			default:  [],
+		};
+	}
+
 	static createModel(modelName, schemaConfig, options = {}) {
 		const schema = mongoose.Schema(schemaConfig, options.automatics);
 
