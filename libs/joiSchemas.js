@@ -43,5 +43,9 @@ module.exports = {
 		labels:   joi.object().pattern(
 			/^[a-z]{2}$/, joi.string().optional(),
 		).optional().invalid([null]),
+		needs_info:   joi.boolean().required(),
+		informations: joi.object().pattern(
+			/^[a-z]{2}$/, joi.string().optional(),
+		).optional().invalid([null]),
 	})),
 };
