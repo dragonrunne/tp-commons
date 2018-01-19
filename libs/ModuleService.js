@@ -11,9 +11,11 @@ class ModuleService {
 			query.$or = [];
 			const indexes = this.model.schema._indexes[0][0];
 			Object.keys(indexes).forEach((key) => {
-				const o = {};
-				o[key] = new RegExp(`${query.q}`, 'i');
-				query.$or.push(o);
+				query.q.split(' ').forEach((q) => {
+					const o = {};
+					o[key] = new RegExp(`${q}`, 'i');
+					query.$or.push(o);
+				});
 			});
 		}
 		Reflect.deleteProperty(query, 'q');
