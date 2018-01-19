@@ -12,7 +12,7 @@ class ModuleService {
 			const indexes = this.model.schema._indexes[0][0];
 			Object.keys(indexes).forEach((key) => {
 				const o = {};
-				o[key] = new RegExp(`^${query.q}`, 'i');
+				o[key] = new RegExp(`${query.q}`, 'i');
 				query.$or.push(o);
 			});
 		}
