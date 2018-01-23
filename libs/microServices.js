@@ -69,6 +69,11 @@ const BRAND = {
 	name: 'brands',
 };
 
+const DEALER = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'dealers',
+};
+
 const ORGANIZATION = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'organizations',
@@ -170,6 +175,10 @@ module.exports = {
 	BRAND: {
 		url:  url.resolve(BRAND.url, BRAND.name),
 		name: BRAND.name,
+	},
+	DEALER: {
+		url:  url.resolve(DEALER.url, DEALER.name),
+		name: DEALER.name,
 	},
 	ORGANIZATION: {
 		url:  url.resolve(ORGANIZATION.url, ORGANIZATION.name),
