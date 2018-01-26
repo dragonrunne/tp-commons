@@ -64,6 +64,11 @@ const AUTH_FRONT = {
 	name: 'authFront',
 };
 
+const AUTH_GATEWAY = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'authGateway',
+};
+
 const BRAND = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'brands',
@@ -171,6 +176,10 @@ module.exports = {
 	AUTH_FRONT: {
 		url:  url.resolve(AUTH_FRONT.url, '/auth/front'),
 		name: AUTH_FRONT.name,
+	},
+	AUTH_GATEWAY: {
+		url:  url.resolve(AUTH_GATEWAY.url, '/auth/gateway'),
+		name: AUTH_GATEWAY.name,
 	},
 	BRAND: {
 		url:  url.resolve(BRAND.url, BRAND.name),
