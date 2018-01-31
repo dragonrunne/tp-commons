@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "algoliasearch": "^3.24.9",
     "cloudinary": "^1.9.0",
     "fast-csv": "^2.4.0",
     "form-data": "^2.3.1",

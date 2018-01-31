@@ -1,8 +1,17 @@
-const MAX_SAFE_INTEGER_32BITS = (2 ** 20) - 1;
+const algoliasearch = require('algoliasearch');
+
+let Algolia = null;
+if (process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY) {
+	Algolia = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY);
+}
 
 class ModuleService {
-	constructor(model) {
+	constructor(model, algoliaConf) {
 		this.model = model;
+		if (Algolia && algoliaConf) {
+			this.algoliaIndex = Algolia.initIndex(this.model.collection.collectionName);
+			this.algoliaIndex.setSettings(algoliaConf);
+		}
 	}
 
 	_generateSearchQuery(query) {
@@ -23,7 +32,18 @@ class ModuleService {
 	}
 
 	create(object) {
-		return this.model.create(object);
+		return this.model.create(object)
+			.then((obj) => {
+				if (!Algolia || !this.algoliaIndex) return obj;
+				obj.objectID = obj._id;
+				return this.algoliaIndex.partialUpdateObject(obj)
+					.then(() => this.model.findOneAndUpdate({
+						_id:                obj._id,
+						indexed_by_algolia: true,
+					}, object, {
+						new: true,
+					}));
+			});
 	}
 
 	getOne(query) {
@@ -56,12 +76,21 @@ class ModuleService {
 			_id: id,
 		}, object, {
 			new: true,
+		}).then((obj) => {
+			if (!Algolia || !this.algoliaIndex) return obj;
+			obj.objectID = obj._id;
+			return this.algoliaIndex.partialUpdateObject(obj)
+				.then(() => obj);
 		});
 	}
 
 	removeById(id) {
 		return this.model.findByIdAndRemove({
 			_id: id,
+		}).then((obj) => {
+			if (!Algolia || !this.algoliaIndex) return obj;
+			return this.algoliaIndex.deleteObject(id)
+				.then(() => obj);
 		});
 	}
 
