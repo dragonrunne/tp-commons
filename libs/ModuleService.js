@@ -42,7 +42,8 @@ class ModuleService {
 						indexed_by_algolia: true,
 					}, object, {
 						new: true,
-					}));
+					}))
+					.then(() => obj);
 			});
 	}
 
