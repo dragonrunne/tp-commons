@@ -37,7 +37,7 @@ module.exports = {
 			},
 		],
 	})).objectId().objectId(),
-	LABELS: joi.array().items(joi.object().keys({
+	USERS_CUSTOM_FIELDS: joi.array().items(joi.object().keys({
 		key:      joi.string().required(),
 		type:     joi.string().required(),
 		required: joi.boolean().required(),
