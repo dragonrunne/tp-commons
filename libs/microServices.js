@@ -130,6 +130,14 @@ const ARTICLE = {
 	name: 'articles',
 };
 
+/**
+ * TP_CRON
+ */
+const JOB = {
+	url:  process.env.TP_CRON_URL || 'http://localhost:3006',
+	name: 'jobs',
+};
+
 module.exports = {
 	CATEGORY: {
 		url:  url.resolve(CATEGORY.url, CATEGORY.name),
@@ -226,5 +234,10 @@ module.exports = {
 	ARTICLE: {
 		url:  url.resolve(ARTICLE.url, ARTICLE.name),
 		name: ARTICLE.name,
+	},
+
+	JOB: {
+		url:  url.resolve(JOB.url, JOB.name),
+		name: JOB.name,
 	},
 };
