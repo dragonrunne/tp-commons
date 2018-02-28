@@ -2,6 +2,7 @@ const _ = require('lodash');
 const csv = require('fast-csv');
 const Joi = require('joi');
 const { Duplex } = require('stream');
+const fs = require('fs');
 
 class CSV {
 	static bufferToStream(buffer) {
@@ -63,6 +64,33 @@ class CSV {
 			csv
 				.writeToPath(path, data, {
 					headers: true,
+				})
+				.on('error', (err) => {
+					throw new Error(err);
+				})
+				.on('finish', () => {
+					resolve();
+				});
+		});
+	}
+
+	static saveStream(name, data, { append = false, headers = true }, transform = (d) => d) {
+		return new Promise((resolve) => {
+			const fsOptions = {
+				encoding: 'utf8',
+				flags:    'w',
+			};
+			if (append) {
+				fsOptions.flags = 'a';
+				data.unshift({}); // To add new line when appending
+			}
+			csv
+				.writeToStream(fs.createWriteStream(name, fsOptions), data, {
+					headers,
+					transform,
+				})
+				.on('error', (err) => {
+					throw new Error(err);
 				})
 				.on('finish', () => {
 					resolve();
