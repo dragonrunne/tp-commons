@@ -54,17 +54,14 @@ class Fetch {
 			});
 	}
 
-	static getFile(headers, url) {
-		logger.info('getFile 1', headers, url);
+	static getFile(headers, url, method = 'GET', body = {}) {
 		return fetch(url, {
-			method:  'GET',
-			headers: headers || {},
+			method,
+			body:    JSON.stringify(body),
+			headers: headers || defaultHeader,
 			timeout: 0,
 		})
-			.then((res) => {
-				logger.info('getFile 2', url);
-				return res.body;
-			});
+			.then((res) => res.body);
 	}
 
 	static post(headers, url, body) {

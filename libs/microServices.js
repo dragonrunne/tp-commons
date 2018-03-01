@@ -107,6 +107,11 @@ const IMPORT = {
 	name: 'import',
 };
 
+const EXPORT = {
+	url:  process.env.TP_IMPEXP_URL || 'http://localhost:3004',
+	name: 'export',
+};
+
 const TEMPLATE = {
 	url:  process.env.TP_IMPEXP_URL || 'http://localhost:3004',
 	name: 'templates',
@@ -222,6 +227,10 @@ module.exports = {
 	IMPORT: {
 		url:  url.resolve(IMPORT.url, IMPORT.name),
 		name: IMPORT.name,
+	},
+	EXPORT: {
+		url:  url.resolve(EXPORT.url, EXPORT.name),
+		name: EXPORT.name,
 	},
 	TEMPLATE: {
 		url:  url.resolve(TEMPLATE.url, TEMPLATE.name),
