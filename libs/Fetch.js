@@ -61,7 +61,14 @@ class Fetch {
 			headers: headers || defaultHeader,
 			timeout: 0,
 		})
-			.then((res) => res.body);
+			.then(async (res) => {
+				if (res.status >= 400) {
+					const json = await res.json();
+					logger.error(json.output);
+					return Promise.reject(json);
+				}
+				return res.body;
+			});
 	}
 
 	static post(headers, url, body) {
