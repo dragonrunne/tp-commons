@@ -74,6 +74,11 @@ const AUTH_CRON = {
 	name: 'authCron',
 };
 
+const AUTH_IMPEXP = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'authImpExp',
+};
+
 const BRAND = {
 	url:  process.env.TP_UM_URL || 'http://localhost:3003',
 	name: 'brands',
@@ -202,6 +207,10 @@ module.exports = {
 	AUTH_CRON: {
 		url:  url.resolve(AUTH_CRON.url, '/auth/cron'),
 		name: AUTH_CRON.name,
+	},
+	AUTH_IMPEXP: {
+		url:  url.resolve(AUTH_IMPEXP.url, '/auth/impexp'),
+		name: AUTH_IMPEXP.name,
 	},
 	BRAND: {
 		url:  url.resolve(BRAND.url, BRAND.name),
