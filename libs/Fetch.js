@@ -20,8 +20,8 @@ class Fetch {
 	static generateHeaders(headers) {
 		const microServiceHeaders = {};
 
-		if (headers.authorization) {
-			microServiceHeaders.Authorization = headers.authorization;
+		if (headers.authorization || headers.Authorization) {
+			microServiceHeaders.Authorization = headers.authorization || headers.Authorization;
 		}
 
 		if (headers['accept-language']) {
