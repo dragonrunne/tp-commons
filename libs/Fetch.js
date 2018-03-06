@@ -54,10 +54,10 @@ class Fetch {
 			});
 	}
 
-	static getFile(headers, url, method = 'GET', body = {}) {
+	static getFile(headers, url, method = 'GET', body = null) {
 		return fetch(url, {
 			method,
-			body:    JSON.stringify(body),
+			body:    body ? JSON.stringify(body) : undefined,
 			headers: headers || defaultHeader,
 			timeout: 0,
 		})
