@@ -14,5 +14,6 @@ module.exports = (logger) => (err, req, res, next) => { // eslint-disable-line n
 	} else {
 		logger.error(err.output.payload);
 	}
+	err = Object.assign(err, { eventId: res.sentry });
 	res.status(err.output.statusCode).json(err);
 };
