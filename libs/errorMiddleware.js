@@ -1,6 +1,7 @@
 const { SevenBoom } = require('graphql-apollo-errors');
 
 module.exports = (logger) => (err, req, res, next) => { // eslint-disable-line no-unused-vars
+	err.eventId = res.sentry;
 	if (err.isJoi) {
 		err = SevenBoom.badRequest(err.message, err.details, err.name);
 	} else if (err.name === 'ValidationError') {
