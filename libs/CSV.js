@@ -32,8 +32,8 @@ class CSV {
 		return new Promise((resolve, reject) => {
 			stream
 				.pipe(csv(options))
-				.on('error', (err) => {
-					throw new Error(err);
+				.on('error', (error) => {
+					reject(error);
 				})
 				.on('data', (data) => {
 					++currentLine;
