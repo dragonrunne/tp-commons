@@ -39,7 +39,7 @@ class CSV {
 					++currentLine;
 					data = _.mapValues(data, (value) => (value === '' ? null : value));
 					data = transformer(data);
-					Joi.validate(data, joiSchema, (err, value) => {
+					Joi.validate(data, joiSchema, { convert: true }, (err, value) => {
 						if (err) {
 							errors.push({
 								line:  currentLine,
