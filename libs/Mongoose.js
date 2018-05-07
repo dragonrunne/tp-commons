@@ -48,7 +48,7 @@ class Mongoose {
 	}
 
 	static createModel(modelName, schemaConfig, options = {}) {
-		const schema = mongoose.Schema(schemaConfig, options.automatics);
+		const schema = mongoose.Schema(schemaConfig, Object.assign(options.automatics, { strict: 'false' }));
 
 		if (options.withPaginate) {
 			schema.plugin(mongoosePaginate);

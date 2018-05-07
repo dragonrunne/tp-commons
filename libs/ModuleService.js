@@ -57,10 +57,10 @@ class ModuleService {
 		});
 	}
 
-	getAll(query = {}, limit = 0) {
+	getAll(query = {}, limit = 0, options = {}) {
 		query = this._generateSearchQuery(query);
 		return this.model
-			.find(query)
+			.find(query, null, options)
 			.limit(limit);
 	}
 
@@ -72,12 +72,12 @@ class ModuleService {
 		return this.model.paginate(query, options);
 	}
 
-	update(id, object) {
+	update(id, object, options = {}) {
 		return this.model.findOneAndUpdate({
 			_id: id,
-		}, object, {
+		}, object, Object.assign({
 			new: true,
-		}).then((obj) => {
+		}, options)).then((obj) => {
 			if (!Algolia || !this.algoliaIndex) return obj;
 			obj.objectID = obj._id;
 			return this.algoliaIndex.partialUpdateObject(obj)
