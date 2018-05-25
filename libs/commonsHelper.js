@@ -14,7 +14,7 @@ class CommonsHelper {
 			'de',
 			'es',
 			'nl',
-			'se',
+			'sv',
 			'pt',
 		];
 		languages.forEach((lang) => {
