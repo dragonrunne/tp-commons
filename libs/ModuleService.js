@@ -22,8 +22,12 @@ class ModuleService {
 			Object.keys(indexes).forEach((key) => {
 				query.q.split(' ').forEach((q) => {
 					const o = {};
-					o[key] = new RegExp(`${q}`, 'i');
-					query.$or.push(o);
+					try {
+						o[key] = new RegExp(`${q}`, 'i');
+						query.$or.push(o);
+					} catch (e) {
+						// continue
+					}
 				});
 			});
 		}
