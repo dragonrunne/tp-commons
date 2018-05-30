@@ -42,7 +42,7 @@ module.exports = {
 		type:     joi.string().required(),
 		required: joi.boolean().required(),
 		labels:   joi.object().pattern(
-			/^[a-z]{2}$/, joi.string().optional(),
+			/^[a-z]{2}$/, joi.string().optional().allow(null),
 		).optional().invalid([null]),
 		needs_info:   joi.boolean().required(),
 		informations: joi.object().pattern(
