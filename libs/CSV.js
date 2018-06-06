@@ -80,12 +80,15 @@ class CSV {
 				encoding: 'utf8',
 				flags:    'w',
 			};
+			const fsStream = fs.createWriteStream(name, fsOptions);
+
 			if (append) {
 				fsOptions.flags = 'a';
-				data.unshift({}); // To add new line when appending
+				fsStream.write('\r\n');
 			}
+
 			csv
-				.writeToStream(fs.createWriteStream(name, fsOptions), data, {
+				.writeToStream(fsStream, data, {
 					headers,
 					transform,
 				})
