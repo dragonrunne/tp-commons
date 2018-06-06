@@ -78,12 +78,12 @@ class CSV {
 		return new Promise((resolve) => {
 			const fsOptions = {
 				encoding: 'utf8',
-				flags:    'w',
+				flags:    append ? 'a' : 'w',
 			};
+
 			const fsStream = fs.createWriteStream(name, fsOptions);
 
 			if (append) {
-				fsOptions.flags = 'a';
 				fsStream.write('\r\n');
 			}
 
