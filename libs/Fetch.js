@@ -28,6 +28,10 @@ class Fetch {
 			microServiceHeaders['accept-language'] = headers['accept-language'];
 		}
 
+		if (headers.bucket) {
+			microServiceHeaders.bucket = headers.bucket;
+		}
+
 		return microServiceHeaders;
 	}
 
