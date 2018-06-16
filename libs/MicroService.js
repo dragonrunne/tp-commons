@@ -1,4 +1,6 @@
 const Mongoose = require('./Mongoose');
+const { Server } = require('http');
+const SocketIO = require('socket.io');
 
 class MicroService {
 	constructor(options) {
@@ -27,6 +29,17 @@ class MicroService {
 	async start(app) {
 		await this._connectMongo(this.options.mongoURI);
 		await this._init(this.options.initMethod);
+
+		if (this.options.socket) {
+			this.http = Server(app);
+			this.io = SocketIO(this.http);
+			return new Promise((resolve) => {
+				this.http.listen(this.options.port, () => {
+					logger.info(`[${this.options.name}] listening on port ${this.options.port}`);
+					resolve(this.io);
+				});
+			});
+		}
 
 		return new Promise((resolve) => {
 			app.listen(this.options.port, () => {
