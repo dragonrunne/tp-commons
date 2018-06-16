@@ -9,7 +9,7 @@ class CloudinaryStorage {
 		return new Promise((resolve, reject) => {
 			try {
 				Cloudinary.uploader.upload_stream((result) => {
-					resolve(result.url);
+					resolve(result.secure_url);
 				}).end(data);
 			} catch (e) {
 				reject(e);
