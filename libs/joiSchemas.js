@@ -58,7 +58,9 @@ module.exports = {
 		language: {
 			objectId: 'invalid value(s). Must be String or null.',
 		},
-		pre:   processLabels,
+		pre(value, state, options) {
+			return processLabels(value); // Keep the value as it was
+		},
 		rules: [],
 	})),
 };
