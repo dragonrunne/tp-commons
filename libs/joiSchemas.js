@@ -52,7 +52,7 @@ module.exports = {
 	})),
 	LABELS: joi.extend((j) => ({
 		base: j.object().pattern(
-			/^[a-z]{2}$/, joi.STRING.optional().allow(null),
+			/^[a-z]{2}$/, joi.string().optional().allow(null),
 		),
 		name:     'labels',
 		language: {
