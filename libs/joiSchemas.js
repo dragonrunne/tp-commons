@@ -51,7 +51,9 @@ module.exports = {
 		).optional().invalid([null]),
 	})),
 	LABELS: joi.extend((j) => ({
-		base:     j.any(),
+		base: j.object().pattern(
+			/^[a-z]{2}$/, joi.STRING.optional().allow(null),
+		),
 		name:     'labels',
 		language: {
 			objectId: 'invalid value(s). Must be String or null.',
