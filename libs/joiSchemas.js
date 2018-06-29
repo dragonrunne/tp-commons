@@ -50,17 +50,7 @@ module.exports = {
 			/^[a-z]{2}$/, joi.string().optional(),
 		).optional().invalid([null]),
 	})),
-	LABELS: joi.extend((j) => ({
-		base: j.object().pattern(
-			/^[a-z]{2}$/, joi.string().optional().allow(null),
-		),
-		name:     'labels',
-		language: {
-			objectId: 'invalid value(s). Must be String or null.',
-		},
-		pre(value, state, options) {
-			return processLabels(value); // Keep the value as it was
-		},
-		rules: [],
-	})),
+	LABELS: joi.object().pattern(
+		/^[a-z]{2}$/, joi.string().optional().allow(null),
+	),
 };
