@@ -94,6 +94,7 @@ class ModuleService {
 		}, object, Object.assign({
 			new: true,
 		}, options)).then((obj) => {
+			if (!Algolia || !this.algoliaIndex) return obj;
 			const algoliaRestrictedObject =
 					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
 			algoliaRestrictedObject.objectID = obj._id;
