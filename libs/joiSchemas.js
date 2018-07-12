@@ -1,7 +1,6 @@
 const { promisify } = require('util');
 const joi = require('joi');
 const mongoose = require('mongoose');
-const { processLabels } = require('./commonsHelper');
 
 module.exports = {
 	joi,
@@ -51,6 +50,6 @@ module.exports = {
 		).optional().invalid([null]),
 	})),
 	LABELS: joi.object().pattern(
-		/^[a-z]{2}$/, joi.string().optional().allow(null),
+		/^[a-z]{2}$/, joi.string().optional().allow([null, '']),
 	),
 };
