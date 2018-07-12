@@ -50,6 +50,6 @@ module.exports = {
 		).optional().invalid([null]),
 	})),
 	LABELS: joi.object().pattern(
-		/^[a-z]{2}$/, joi.string().optional().allow([null, '']),
+		/^[a-z]{2}$/, joi.string().allow([null, '']).optional(),
 	),
 };
