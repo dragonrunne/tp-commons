@@ -1,6 +1,6 @@
 {
   "name": "tp-commons",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "Commons methods use by every micro service",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "graphql-apollo-errors": "^2.0.2",
     "joi": "^10.6.0",
     "lodash": "^4.17.4",
+    "lodash.pick": "^4.4.0",
     "mongoose": "^4.11.10",
     "mongoose-paginate": "^5.0.3",
     "node-fetch": "^1.7.3",

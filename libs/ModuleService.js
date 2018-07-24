@@ -1,3 +1,4 @@
+const { pick } = require('lodash');
 const algoliasearch = require('algoliasearch');
 
 let Algolia = null;
@@ -9,8 +10,12 @@ class ModuleService {
 	constructor(model, algoliaConf) {
 		this.model = model;
 		if (Algolia && algoliaConf) {
+			this.algoliaConf = algoliaConf;
 			this.algoliaIndex = Algolia.initIndex(this.model.collection.collectionName);
-			this.algoliaIndex.setSettings(algoliaConf);
+			this.algoliaIndex.setSettings({
+				searchableAttributes:  this.algoliaConf.searchableAttributes,
+				attributesForFaceting: this.algoliaConf.attributesForFaceting,
+			});
 		}
 	}
 
@@ -40,14 +45,21 @@ class ModuleService {
 		return this.model.create(object)
 			.then((obj) => {
 				if (!Algolia || !this.algoliaIndex) return obj;
-				obj.objectID = obj._id;
-				return this.algoliaIndex.partialUpdateObject(obj)
-					.then(() => this.model.findOneAndUpdate({
-						_id:                obj._id,
-						indexed_by_algolia: true,
-					}, object, {
-						new: true,
-					}))
+				const algoliaRestrictedObject =
+					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
+				algoliaRestrictedObject.objectID = obj._id;
+				return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
+					.then(() => {
+						if (!obj.indexed_by_algolia) {
+							return this.model.findOneAndUpdate({
+								_id:                obj._id,
+								indexed_by_algolia: true,
+							}, object, {
+								new: true,
+							});
+						}
+						return obj;
+					})
 					.then(() => obj);
 			});
 	}
@@ -84,8 +96,21 @@ class ModuleService {
 			new: true,
 		}, options)).then((obj) => {
 			if (!Algolia || !this.algoliaIndex) return obj;
-			obj.objectID = obj._id;
-			return this.algoliaIndex.partialUpdateObject(obj)
+			const algoliaRestrictedObject =
+					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
+			algoliaRestrictedObject.objectID = obj._id;
+			return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
+				.then(() => {
+					if (!obj.indexed_by_algolia) {
+						return this.model.findOneAndUpdate({
+							_id:                obj._id,
+							indexed_by_algolia: true,
+						}, object, {
+							new: true,
+						});
+					}
+					return obj;
+				})
 				.then(() => obj);
 		});
 	}
