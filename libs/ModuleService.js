@@ -22,6 +22,7 @@ class ModuleService {
 			Object.keys(indexes).forEach((key) => {
 				query.q.split(' ').forEach((q) => {
 					const o = {};
+					q = q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 					try {
 						o[key] = new RegExp(`${q}`, 'i');
 						query.$or.push(o);
