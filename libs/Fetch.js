@@ -125,14 +125,22 @@ class Fetch {
 			});
 	}
 
-	static upload(url, file, params = {}) {
+	static async upload(url, file, params = {}) {
 		const formData = new FormData();
 
-		formData.append('file', file.buffer);
+		function streamToBuffer(stream) {
+			return new Promise((resolve, reject) => {
+				const buffers = [];
+				stream.on('error', reject);
+				stream.on('data', (data) => buffers.push(data));
+				stream.on('end', () => resolve(Buffer.concat(buffers)));
+			});
+		}
+
+		formData.append('file', await streamToBuffer(file.stream));
 		formData.append('encoding', file.encoding);
 		formData.append('mimetype', file.mimetype);
-		formData.append('originalname', file.originalname);
-		formData.append('size', file.size);
+		formData.append('originalname', file.filename);
 
 		Object.keys(params).forEach((key) => {
 			formData.append(key, params[key]);
@@ -141,7 +149,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'POST',
 			body:    formData,
-			headers: multipartHeader,
+			// headers: multipartHeader,
 			timeout: 0,
 		})
 			.then((res) => res.json())
