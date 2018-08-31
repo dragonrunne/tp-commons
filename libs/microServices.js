@@ -104,6 +104,11 @@ const USER_FRONT = {
 	name: 'usersFront',
 };
 
+const HOOK = {
+	url:  process.env.TP_UM_URL || 'http://localhost:3003',
+	name: 'hooks',
+};
+
 /**
  * TP_IMPEXP
  */
@@ -236,6 +241,10 @@ module.exports = {
 	USER_FRONT: {
 		url:  url.resolve(USER_FRONT.url, '/users/front'),
 		name: USER_FRONT.name,
+	},
+	HOOK: {
+		url:  url.resolve(USER_FRONT.url, '/hooks'),
+		name: HOOK.name,
 	},
 
 	IMPORT: {
