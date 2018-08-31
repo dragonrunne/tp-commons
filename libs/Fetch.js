@@ -137,10 +137,10 @@ class Fetch {
 			});
 		}
 
-		formData.append('file', await streamToBuffer(file.stream));
+		formData.append('file', file.buffer || await streamToBuffer(file.stream));
 		formData.append('encoding', file.encoding);
 		formData.append('mimetype', file.mimetype);
-		formData.append('originalname', file.filename);
+		formData.append('originalname', file.originalname || file.filename);
 
 		Object.keys(params).forEach((key) => {
 			formData.append(key, params[key]);
