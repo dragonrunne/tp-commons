@@ -12,6 +12,9 @@ const Fetch = require('./libs/Fetch');
 const microServices = require('./libs/microServices');
 const MicroService = require('./libs/MicroService');
 const CommonsHelper = require('./libs/commonsHelper');
+const ETL = require('./libs/etl/etl');
+const Transformers = require('./libs/etl/transformers/transformers');
+const Extractors = require('./libs/etl/extractors/extractors');
 
 module.exports = {
 	asyncMiddleware,
@@ -28,4 +31,7 @@ module.exports = {
 	microServices,
 	MicroService,
 	CommonsHelper,
+	ETL,
+	Transformers,
+	Extractors,
 };
