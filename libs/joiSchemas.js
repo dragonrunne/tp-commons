@@ -52,4 +52,17 @@ module.exports = {
 	LABELS: joi.object().pattern(
 		/^[a-z]{2}$/, joi.string().allow([null, '']).optional(),
 	),
+	ADDRESS: joi.object().keys({
+		formatted_address: joi.string().required(),
+		geolocation:       joi.object().keys({
+			coordinates: joi.array().items(joi.string()).required(),
+			type:        joi.string().required(),
+		}).required(),
+		address: {
+			street:  joi.string().optional().allow(null),
+			zipcode: joi.string().optional().allow(null),
+			city:    joi.string().optional().allow(null),
+			country: joi.string().optional().allow(null),
+		},
+	}),
 };

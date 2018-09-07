@@ -47,6 +47,22 @@ class Mongoose {
 		};
 	}
 
+	static get ADDRESS() {
+		return {
+			formatted_address: String,
+			geolocation:       {
+				coordinates: [Number],
+				type:        { type: String },
+			},
+			address: {
+				street:  String,
+				zipcode: String,
+				city:    String,
+				country: String,
+			},
+		};
+	}
+
 	static createModel(modelName, schemaConfig, options = {}) {
 		const schema = mongoose.Schema(schemaConfig, Object.assign(options.automatics || {}, { strict: 'false' }));
 
