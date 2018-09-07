@@ -62,7 +62,7 @@ class Mongoose {
 					country: String,
 				},
 			},
-			required: true,
+			required: false,
 		};
 	}
 
