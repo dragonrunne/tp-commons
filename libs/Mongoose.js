@@ -49,17 +49,20 @@ class Mongoose {
 
 	static get ADDRESS() {
 		return {
-			formatted_address: String,
-			geolocation:       {
-				coordinates: [Number],
-				type:        { type: String },
+			type: {
+				formatted_address: String,
+				geolocation:       {
+					coordinates: [Number],
+					type:        { type: String },
+				},
+				address: {
+					street:  String,
+					zipcode: String,
+					city:    String,
+					country: String,
+				},
 			},
-			address: {
-				street:  String,
-				zipcode: String,
-				city:    String,
-				country: String,
-			},
+			required: true,
 		};
 	}
 
