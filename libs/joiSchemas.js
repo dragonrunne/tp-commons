@@ -55,7 +55,7 @@ module.exports = {
 	ADDRESS: joi.object().keys({
 		formatted_address: joi.string().required(),
 		geolocation:       joi.object().keys({
-			coordinates: joi.array().items(joi.string()).required(),
+			coordinates: joi.array().items(joi.number()).required(),
 			type:        joi.string().required(),
 		}).required(),
 		address: {
