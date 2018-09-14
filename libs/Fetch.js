@@ -143,7 +143,11 @@ class Fetch {
 		formData.append('originalname', file.originalname || file.filename);
 
 		Object.keys(params).forEach((key) => {
-			formData.append(key, params[key]);
+			if (typeof params[key] === 'object') {
+				formData.append(key, JSON.stringify(params[key]));
+			} else {
+				formData.append(key, params[key]);
+			}
 		});
 
 		return fetch(url, {
