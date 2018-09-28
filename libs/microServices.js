@@ -155,6 +155,11 @@ const ARTICLE = {
 	name: 'articles',
 };
 
+const RESOURCE = {
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
+	name: 'resources',
+};
+
 /**
  * TP_CRON
  */
@@ -279,6 +284,10 @@ module.exports = {
 	ARTICLE: {
 		url:  url.resolve(ARTICLE.url, ARTICLE.name),
 		name: ARTICLE.name,
+	},
+	RESOURCE: {
+		url:  url.resolve(RESOURCE.url, RESOURCE.name),
+		name: RESOURCE.name,
 	},
 
 	JOB: {
