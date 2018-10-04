@@ -161,7 +161,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'POST',
 			body:    formData,
-			// headers: multipartHeader,
+			headers: { origin: process.env.SUPER_SECRET_PASSPHRASE },
 			timeout: 0,
 		})
 			.then((res) => res.json())
