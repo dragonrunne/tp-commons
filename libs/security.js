@@ -1,13 +1,18 @@
 const cors = require('cors');
 
 const whitelist = [
-	'http://127.0.0.1:8080',
-	'http://localhost:8080',
+	'http:\/\/127.0.0.1:8080',
+	'http:\/\/localhost:8080',
+	'http:\/\/localhost:8081',
 ].concat(process.env.WHITELIST_URLS ? process.env.WHITELIST_URLS.split(',') : []);
 
 const corsOptions = {
 	origin(origin, next) {
-		if (whitelist.indexOf(origin) !== -1) {
+		const valids = whitelist.map((url) => {
+			const regex = new RegExp(url);
+			return regex.test(origin);
+		});
+		if (valids.indexOf(true) !== -1) {
 			next(null, true);
 		} else {
 			next(new Error('Authorization denied'));
