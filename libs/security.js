@@ -7,7 +7,7 @@ const whitelist = [
 
 const corsOptions = {
 	origin(origin, next) {
-		if (whitelist.indexOf(origin) !== -1) {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
 			next(null, true);
 		} else {
 			next(new Error('Authorization denied'));
