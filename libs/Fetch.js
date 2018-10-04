@@ -36,6 +36,10 @@ class Fetch {
 			microServiceHeaders.origin = headers.origin;
 		}
 
+		if (!headers.origin && process.env.SUPER_SECRET_PASSPHRASE) {
+			microServiceHeaders.origin = process.env.SUPER_SECRET_PASSPHRASE;
+		}
+
 		return microServiceHeaders;
 	}
 

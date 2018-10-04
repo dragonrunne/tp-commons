@@ -6,6 +6,10 @@ const whitelist = [
 	'http:\/\/localhost:8081',
 ].concat(process.env.WHITELIST_URLS ? process.env.WHITELIST_URLS.split(',') : []);
 
+if (process.env.SUPER_SECRET_PASSPHRASE) {
+	whitelist.push(process.env.SUPER_SECRET_PASSPHRASE);
+}
+
 const corsOptions = {
 	origin(origin, next) {
 		const valids = whitelist.map((url) => {
