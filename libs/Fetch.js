@@ -32,6 +32,10 @@ class Fetch {
 			microServiceHeaders.bucket = headers.bucket;
 		}
 
+		if (headers.origin) {
+			microServiceHeaders.origin = headers.origin;
+		}
+
 		return microServiceHeaders;
 	}
 
