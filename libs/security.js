@@ -16,7 +16,7 @@ const corsOptions = {
 			const regex = new RegExp(url);
 			return regex.test(origin);
 		});
-		console.log(origin, valids.indexOf(true) !== -1, whitelist);
+		console.log(origin, valids.indexOf(true) !== -1);
 		if (valids.indexOf(true) !== -1) {
 			next(null, true);
 		} else {
