@@ -1,8 +1,8 @@
 const cors = require('cors');
 
 const whitelist = [
-	'http://127.0.0.1',
-	'http://localhost',
+	'http://127.0.0.1:8080',
+	'http://localhost:8080',
 ].concat(process.env.WHITELIST_URLS ? process.env.WHITELIST_URLS.split(',') : []);
 
 const corsOptions = {
