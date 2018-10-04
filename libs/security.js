@@ -12,11 +12,11 @@ if (process.env.SUPER_SECRET_PASSPHRASE) {
 
 const corsOptions = {
 	origin(origin, next) {
-		console.log(origin);
 		const valids = whitelist.map((url) => {
 			const regex = new RegExp(url);
 			return regex.test(origin);
 		});
+		console.log(origin, valids.indexOf(true) !== -1, whitelist);
 		if (valids.indexOf(true) !== -1) {
 			next(null, true);
 		} else {
