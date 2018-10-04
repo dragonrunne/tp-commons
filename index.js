@@ -15,6 +15,7 @@ const CommonsHelper = require('./libs/commonsHelper');
 const ETL = require('./libs/etl/etl');
 const Transformers = require('./libs/etl/transformers/transformers');
 const Extractors = require('./libs/etl/extractors/extractors');
+const Security = require('./libs/security');
 
 module.exports = {
 	asyncMiddleware,
@@ -34,4 +35,5 @@ module.exports = {
 	ETL,
 	Transformers,
 	Extractors,
+	Security,
 };
