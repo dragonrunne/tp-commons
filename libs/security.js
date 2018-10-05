@@ -26,7 +26,6 @@ function initCors(options) {
 			}
 		},
 		optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-		preflightContinue:    false, // Does not let the OPTIONS requests continue to the next handlers
 	});
 }
 
