@@ -1,13 +1,11 @@
 const cors = require('cors');
 
-const whitelist = [
-	'http:\/\/127.0.0.1:8080',
-	'http:\/\/localhost:8080',
-	'http:\/\/localhost:8081',
-];
-
 function initCors(options) {
-	whitelist.concat(options.whitelist_urls ? options.whitelist_urls.split(',') : []);
+	const whitelist = [
+		'http:\/\/127.0.0.1:8080',
+		'http:\/\/localhost:8080',
+		'http:\/\/localhost:8081',
+	].concat(options.whitelist_urls ? options.whitelist_urls.split(',') : []);
 
 	if (options.secret) {
 		whitelist.push(options.secret);
@@ -19,7 +17,6 @@ function initCors(options) {
 				const regex = new RegExp(url);
 				return regex.test(origin);
 			});
-			console.log(origin, valids, whitelist, options);
 			if (valids.indexOf(true) !== -1) {
 				next(null, true);
 			} else {
