@@ -19,7 +19,7 @@ function initCors(options) {
 				const regex = new RegExp(url);
 				return regex.test(origin);
 			});
-			console.log(origin, valids);
+			console.log(origin, valids, whitelist, options);
 			if (valids.indexOf(true) !== -1) {
 				next(null, true);
 			} else {
