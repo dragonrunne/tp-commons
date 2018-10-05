@@ -32,8 +32,8 @@ class Fetch {
 			microServiceHeaders.bucket = headers.bucket;
 		}
 
-		if (process.env.SUPER_SECRET_PASSPHRASE) {
-			microServiceHeaders.origin = process.env.SUPER_SECRET_PASSPHRASE;
+		if (headers.secret) {
+			microServiceHeaders.origin = headers.secret;
 		}
 
 		return microServiceHeaders;
