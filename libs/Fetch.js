@@ -129,7 +129,7 @@ class Fetch {
 			});
 	}
 
-	static async upload(url, file, params = {}) {
+	static async upload(headers, url, file, params = {}) {
 		const formData = new FormData();
 
 		function streamToBuffer(stream) {
@@ -154,10 +154,15 @@ class Fetch {
 			}
 		});
 
+		const newHeaders = {};
+		if (headers.secret) {
+			newHeaders.origin = headers.secret;
+		}
+
 		return fetch(url, {
 			method:  'POST',
 			body:    formData,
-			headers: { origin: process.env.SUPER_SECRET_PASSPHRASE },
+			headers: newHeaders,
 			timeout: 0,
 		})
 			.then((res) => res.json())
