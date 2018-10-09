@@ -13,7 +13,7 @@ function initCors(options) {
 
 	return cors({
 		origin(origin, next) {
-			const valids = whitelist.map((url) => {
+			/* const valids = whitelist.map((url) => {
 				const regex = new RegExp(url);
 				return regex.test(origin);
 			});
@@ -21,7 +21,8 @@ function initCors(options) {
 				next(null, true);
 			} else {
 				next(new Error('Authorization denied'));
-			}
+			} */
+			next(null, true);
 		},
 		optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 	});
