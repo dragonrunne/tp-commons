@@ -16,7 +16,6 @@ if (!global.logger) {
  * A wrapper around node-fetch to handle JSON and errors.
  */
 class Fetch {
-
 	static set defaultHeader(headers) {
 		return Object.assign({ ...defaultHeader }, headers);
 	}
