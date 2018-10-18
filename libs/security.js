@@ -60,7 +60,7 @@ function initCors(options) {
 }
 
 module.exports = {
-	cors:      (options) => initCors(options),
+	CORS:      (options) => initCors(options),
 	bodyguard: (config) => initBodyguard(config),
 	jwt:       {
 		create: (secret, data) => createJwt(secret, data),
