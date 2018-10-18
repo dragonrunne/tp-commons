@@ -16,9 +16,9 @@ function createJwt(secret, data) {
 	});
 }
 
-function initBodyguard(secret) {
+function initBodyguard(config) {
 	return expressJWT({
-		secret,
+		secret:              config.secret,
 		credentialsRequired: false,
 		getToken:            function fromHeaderOrQuerystring(req) {
 			if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
