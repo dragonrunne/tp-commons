@@ -1,3 +1,5 @@
+const { doUntil } = require('async');
+
 class ETL {
 	constructor(config) {
 		this.pipeline = [];
@@ -11,18 +13,24 @@ class ETL {
 
 	process(payload) {
 		const data = JSON.parse(JSON.stringify(payload));
-		let promise = null;
+		let newPayload = null;
+		let index = 0;
 
-		this.pipeline.forEach((pipe) => {
-			if (pipe.extract) {
-				promise = pipe.extract(data, this.config);
-				// promise.then((dataForExtraction) => pipe.extract(dataForExtraction));
-			}
-			if (pipe.transform) {
-				promise.then((dataToTransform) => pipe.transform(dataToTransform, this.config));
-			}
+		return new Promise((resolve, reject) => {
+			doUntil(
+				async () => {
+					newPayload = await this.pipeline[index].run(newPayload || data, this.config);
+					index += 1;
+				},
+				() => index >= this.pipeline.length,
+				(err) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(newPayload);
+				},
+			);
 		});
-		return promise;
 	}
 }
 

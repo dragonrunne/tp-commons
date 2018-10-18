@@ -51,7 +51,7 @@ class BookingWebhookExtractor extends Extractor {
 			: Promise.resolve(null);
 	}
 
-	static async extract(payload, config) {
+	static async run(payload, config) {
 		const checkedPayload = await BookingWebhookExtractor._validate(payload, schema);
 		const extractedPayload = {
 			_id:    checkedPayload._id,

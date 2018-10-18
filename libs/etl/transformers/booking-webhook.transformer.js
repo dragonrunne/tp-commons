@@ -69,7 +69,7 @@ class BookingWebhookTransformer extends Transformer {
 		return tester;
 	}
 
-	static transform(payload) {
+	static run(payload) {
 		const booking = {};
 
 		booking.startTime = payload.slot ? payload.slot.dates.start : null;
