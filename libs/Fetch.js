@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
 const { URL, URLSearchParams } = require('url');
 const FormData = require('form-data');
+const microServices = require('./microServices');
 
 const defaultHeader = { 'Content-Type': 'application/json' };
-const multipartHeader = { 'Content-Type': undefined };
 
 if (!global.logger) {
 	global.logger = {
@@ -17,11 +17,19 @@ if (!global.logger) {
  * A wrapper around node-fetch to handle JSON and errors.
  */
 class Fetch {
-	static generateHeaders(headers) {
+	static set defaultHeader(headers) {
+		return Object.assign({ ...defaultHeader }, headers);
+	}
+
+	static get defaultHeader() {
+		return defaultHeader;
+	}
+
+	static _generateHeaders(headers) {
 		const microServiceHeaders = {};
 
 		if (headers.authorization || headers.Authorization) {
-			microServiceHeaders.Authorization = headers.authorization || headers.Authorization;
+			microServiceHeaders.authorization = headers.authorization || headers.Authorization;
 		}
 
 		if (headers['accept-language']) {
@@ -32,11 +40,12 @@ class Fetch {
 			microServiceHeaders.bucket = headers.bucket;
 		}
 
-		if (headers.secret) {
-			microServiceHeaders.origin = headers.secret;
-		}
-
 		return microServiceHeaders;
+	}
+
+	static async authenticate(apiKey, identity) {
+		const { token } = await Fetch.post({}, `${microServices[identity].url}`, { apiKey });
+		defaultHeader.authorization = `Bearer ${token}`;
 	}
 
 	static get(headers, url, params = null) {
@@ -49,7 +58,7 @@ class Fetch {
 
 		return fetch(ObjectURL.href, {
 			method:  'GET',
-			headers: Fetch.generateHeaders(headers),
+			headers: Object.assign({ ...this.defaultHeader }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
@@ -66,7 +75,7 @@ class Fetch {
 		return fetch(url, {
 			method,
 			body:    body ? JSON.stringify(body) : undefined,
-			headers: headers || defaultHeader,
+			headers: Object.assign({ origin: this.defaultHeader.origin, authorization: this.defaultHeader.authorization }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then(async (res) => {
@@ -83,7 +92,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'POST',
 			body:    JSON.stringify(body),
-			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
+			headers: Object.assign({ ...this.defaultHeader }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
@@ -100,7 +109,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'PUT',
 			body:    JSON.stringify(body),
-			headers: Object.assign(defaultHeader, Fetch.generateHeaders(headers)),
+			headers: Object.assign({ ...this.defaultHeader }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
@@ -116,7 +125,7 @@ class Fetch {
 	static delete(headers, url) {
 		return fetch(url, {
 			method:  'DELETE',
-			headers: Fetch.generateHeaders(headers),
+			headers: Object.assign({ ...this.defaultHeader }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
@@ -154,15 +163,10 @@ class Fetch {
 			}
 		});
 
-		const newHeaders = {};
-		if (headers.secret) {
-			newHeaders.origin = headers.secret;
-		}
-
 		return fetch(url, {
 			method:  'POST',
 			body:    formData,
-			headers: newHeaders,
+			headers:  Object.assign({ origin: this.defaultHeader.origin, authorization: this.defaultHeader.authorization }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
