@@ -1,4 +1,35 @@
 const cors = require('cors');
+const expressJWT = require('express-jwt');
+const jwt = require('jsonwebtoken');
+
+function createJwt(secret, data) {
+	return new Promise((resolve, reject) => {
+		jwt.sign(data, secret, {
+			expiresIn: '30 days',
+		}, (error, token) => {
+			if (error) {
+				reject(error);
+				return;
+			}
+			resolve(token);
+		});
+	});
+}
+
+function initBodyguard(secret) {
+	return expressJWT({
+		secret,
+		credentialsRequired: false,
+		getToken:            function fromHeaderOrQuerystring(req) {
+			if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+				return req.headers.authorization.split(' ')[1];
+			} else if (req.query && req.query.token) {
+				return req.query.token;
+			}
+			return new Error();
+		},
+	});
+}
 
 function initCors(options) {
 	const whitelist = [
@@ -29,5 +60,9 @@ function initCors(options) {
 }
 
 module.exports = {
-	CORS: (options) => initCors(options),
+	cors:      (options) => initCors(options),
+	bodyguard: (secret) => initBodyguard(secret),
+	jwt:       {
+		create: (secret, data) => createJwt(secret, data),
+	},
 };
