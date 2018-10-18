@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const { URL, URLSearchParams } = require('url');
 const FormData = require('form-data');
 const microServices = require('./microServices');
+const Security = require('./security');
 
 const defaultHeader = { 'Content-Type': 'application/json' };
 
@@ -43,8 +44,13 @@ class Fetch {
 		return microServiceHeaders;
 	}
 
-	static async authenticate(apiKey, identity) {
-		const { token } = await Fetch.post({}, `${microServices[identity].url}`, { apiKey });
+	static async authenticate(secret, identity) {
+		const token = await Security.jwt.create(secret, {
+			userId: 42,
+			role:   identity,
+			email:  'no-reply@testpass.fr',
+			identity,
+		});
 		defaultHeader.authorization = `Bearer ${token}`;
 	}
 
@@ -166,7 +172,7 @@ class Fetch {
 		return fetch(url, {
 			method:  'POST',
 			body:    formData,
-			headers:  Object.assign({ origin: this.defaultHeader.origin, authorization: this.defaultHeader.authorization }, Fetch._generateHeaders(headers)),
+			headers: Object.assign({ origin: this.defaultHeader.origin, authorization: this.defaultHeader.authorization }, Fetch._generateHeaders(headers)),
 			timeout: 0,
 		})
 			.then((res) => res.json())
