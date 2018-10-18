@@ -26,7 +26,7 @@ function initBodyguard(config) {
 			} else if (req.query && req.query.token) {
 				return req.query.token;
 			}
-			return new Error();
+			return config.acceptGuest ? null : new Error();
 		},
 	});
 }
