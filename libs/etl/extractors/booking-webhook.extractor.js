@@ -15,10 +15,8 @@ const schema = {
 };
 
 class BookingWebhookExtractor extends Extractor {
-	static _fetchUser(checkedPayload, config) {
-		return Fetch.get({
-			authorization: `Bearer ${config.tokenSuperAdmin.token}`,
-		}, `${microServices.USER_FRONT.url}/${checkedPayload.user_id}`);
+	static _fetchUser(checkedPayload) {
+		return Fetch.get({}, `${microServices.USER_FRONT.url}/${checkedPayload.user_id}`);
 	}
 
 	static _fetchEvent(checkedPayload) {
@@ -40,8 +38,7 @@ class BookingWebhookExtractor extends Extractor {
 					.then((product) => {
 						stock.product = product;
 						return stock;
-					}),
-				)
+					}),)
 			: Promise.resolve(null);
 	}
 
@@ -51,7 +48,7 @@ class BookingWebhookExtractor extends Extractor {
 			: Promise.resolve(null);
 	}
 
-	static async run(payload, config) {
+	static async run(payload) {
 		const checkedPayload = await BookingWebhookExtractor._validate(payload, schema);
 		const extractedPayload = {
 			_id:    checkedPayload._id,
@@ -64,7 +61,7 @@ class BookingWebhookExtractor extends Extractor {
 		};
 		const promises = [];
 
-		promises.push(BookingWebhookExtractor._fetchUser(checkedPayload, config).then((user) => {
+		promises.push(BookingWebhookExtractor._fetchUser(checkedPayload).then((user) => {
 			extractedPayload.user = user;
 		}));
 		promises.push(BookingWebhookExtractor._fetchEvent(checkedPayload).then((event) => {
