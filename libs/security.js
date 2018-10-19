@@ -1,7 +1,6 @@
 const cors = require('cors');
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
-const Raven = require('raven');
 const { SevenBoom } = require('graphql-apollo-errors');
 
 function createJwt(secret, data) {
@@ -53,13 +52,6 @@ function initCors(options) {
 			if (valids.indexOf(true) !== -1) {
 				next(null, true);
 			} else {
-				console.log(origin, whitelist);
-				Raven.captureException(
-					new Error('authorization-denied-cors'),
-					{
-						extra: { origin },
-					},
-				);
 				next(SevenBoom.unauthorized('', {}, 'authorization-denied'));
 			}
 		},
