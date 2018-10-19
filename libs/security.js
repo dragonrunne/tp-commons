@@ -54,7 +54,7 @@ function initCors(options) {
 				next(null, true);
 			} else {
 				Raven.captureException(
-					new Error('authorization-denied'),
+					new Error('authorization-denied-cors'),
 					{
 						extra: { origin },
 					},
