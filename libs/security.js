@@ -53,6 +53,7 @@ function initCors(options) {
 			if (valids.indexOf(true) !== -1) {
 				next(null, true);
 			} else {
+				console.log(origin, whitelist);
 				Raven.captureException(
 					new Error('authorization-denied-cors'),
 					{
