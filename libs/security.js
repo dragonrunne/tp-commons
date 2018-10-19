@@ -1,6 +1,7 @@
 const cors = require('cors');
 const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
+const { SevenBoom } = require('graphql-apollo-errors');
 
 function createJwt(secret, data) {
 	return new Promise((resolve, reject) => {
@@ -44,16 +45,15 @@ function initCors(options) {
 
 	return cors({
 		origin(origin, next) {
-			/* const valids = whitelist.map((url) => {
+			const valids = whitelist.map((url) => {
 				const regex = new RegExp(url);
 				return regex.test(origin);
 			});
 			if (valids.indexOf(true) !== -1) {
 				next(null, true);
 			} else {
-				next(new Error('Authorization denied'));
-			} */
-			next(null, true);
+				next(SevenBoom.unauthorized('', {}, 'authorization-denied'));
+			}
 		},
 		optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 	});
