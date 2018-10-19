@@ -1,10 +1,9 @@
 const fetch = require('node-fetch');
 const { URL, URLSearchParams } = require('url');
 const FormData = require('form-data');
-const microServices = require('./microServices');
 const Security = require('./security');
 
-const defaultHeader = { 'Content-Type': 'application/json' };
+let defaultHeader = { 'Content-Type': 'application/json' };
 
 if (!global.logger) {
 	global.logger = {
@@ -19,7 +18,7 @@ if (!global.logger) {
  */
 class Fetch {
 	static set defaultHeader(headers) {
-		return Object.assign({ ...defaultHeader }, headers);
+		defaultHeader = Object.assign({ ...defaultHeader }, headers);
 	}
 
 	static get defaultHeader() {
