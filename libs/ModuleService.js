@@ -61,7 +61,7 @@ class ModuleService {
 					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
 				algoliaRestrictedObject.objectID = obj._id;
 				return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
-					.then(this._waitAlgolia)
+					.then(this._waitAlgolia.bind(this))
 					.then(() => {
 						if (!obj.indexed_by_algolia) {
 							return this.model.findOneAndUpdate({
@@ -113,7 +113,7 @@ class ModuleService {
 					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
 			algoliaRestrictedObject.objectID = obj._id;
 			return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
-				.then(this._waitAlgolia)
+				.then(this._waitAlgolia.bind(this))
 				.then(() => {
 					if (!obj.indexed_by_algolia) {
 						return this.model.findOneAndUpdate({
