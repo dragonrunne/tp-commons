@@ -41,6 +41,18 @@ class ModuleService {
 		return query;
 	}
 
+	_waitAlgolia(content) {
+		return new Promise((resolve, reject) => {
+			if (!Algolia || !this.algoliaIndex) return null;
+			return this.algoliaIndex.waitTask(content.taskID, (err) => {
+				if (err) {
+					return reject(err);
+				}
+				return resolve();
+			});
+		});
+	}
+
 	create(object) {
 		return this.model.create(object)
 			.then((obj) => {
@@ -49,6 +61,7 @@ class ModuleService {
 					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
 				algoliaRestrictedObject.objectID = obj._id;
 				return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
+					.then(this._waitAlgolia)
 					.then(() => {
 						if (!obj.indexed_by_algolia) {
 							return this.model.findOneAndUpdate({
@@ -100,6 +113,7 @@ class ModuleService {
 					pick(obj, this.algoliaConf.indexableAttributes || Object.keys(obj));
 			algoliaRestrictedObject.objectID = obj._id;
 			return this.algoliaIndex.partialUpdateObject(algoliaRestrictedObject)
+				.then(this._waitAlgolia)
 				.then(() => {
 					if (!obj.indexed_by_algolia) {
 						return this.model.findOneAndUpdate({
