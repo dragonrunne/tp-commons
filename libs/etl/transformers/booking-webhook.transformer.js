@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Transformer = require('./transformer.base');
 
 class BookingWebhookTransformer extends Transformer {
@@ -23,8 +24,8 @@ class BookingWebhookTransformer extends Transformer {
 		return {
 			name:      payload.event.title,
 			address:   payload.event.location.address,
-			startTime: payload.event.date.start,
-			endTime:   payload.event.date.end,
+			startTime: moment(payload.event.date.start).toISOString(),
+			endTime:   moment(payload.event.date.end).toISOString(),
 			id:        payload.event._id,
 		};
 	}
@@ -40,24 +41,33 @@ class BookingWebhookTransformer extends Transformer {
 	}
 
 	static _formatTester(payload) {
-		const userCustomFieldRestricted = ['gender', 'street', 'zipcode', 'city', 'country', 'birth', 'marketingconsent'];
+		const userCustomFieldRestricted = ['gender', 'street', 'zipcode', 'city', 'language', 'country', 'birth', 'marketingconsent'];
+
+		const genderField = payload.user.custom_fields.find((customField) => customField.key === 'gender');
+		const streetField = payload.user.custom_fields.find((customField) => customField.key === 'street');
+		const zipCodeField = payload.user.custom_fields.find((customField) => customField.key === 'zipcode');
+		const cityField = payload.user.custom_fields.find((customField) => customField.key === 'city');
+		const countryField = payload.user.custom_fields.find((customField) => customField.key === 'country');
+		const languageField = payload.user.custom_fields.find((customField) => customField.key === 'language');
+		const birthField = payload.user.custom_fields.find((customField) => customField.key === 'birth');
+		const marketingconsentField = payload.user.custom_fields.find((customField) => customField.key === 'marketingconsent');
 
 		const tester = {
-			gender:    payload.user.custom_fields.find((customField) => customField.key === 'gender'),
+			gender:    genderField ? genderField.value : null,
 			firstName: payload.user.firstname,
 			lastName:  payload.user.lastname,
 			email:     payload.user.email,
 			address:   {
-				street:  payload.user.custom_fields.find((customField) => customField.key === 'street'),
-				zipcode: payload.user.custom_fields.find((customField) => customField.key === 'zipcode'),
-				city:    payload.user.custom_fields.find((customField) => customField.key === 'city'),
-				country: payload.user.custom_fields.find((customField) => customField.key === 'country'),
+				street:  streetField ? streetField.value : null,
+				zipcode: zipCodeField ? zipCodeField.value : null,
+				city:    cityField ? cityField.value : null,
+				country: countryField ? countryField.value : null,
 			},
-			language:         payload.user.language.key,
-			birth:            payload.user.custom_fields.find((customField) => customField.key === 'birth'),
 			phone:            payload.user.phone,
-			marketingconsent: !!payload.user.custom_fields.find((customField) => customField.key === 'marketingconsent'),
 			id:               payload.user._id,
+			language:         languageField ? languageField.value : null,
+			birth:            birthField ? moment(birthField.value).toISOString() : null,
+			marketingconsent: marketingconsentField ? (marketingconsentField.value === 'true') : false,
 		};
 
 		payload.user.custom_fields.forEach((customField) => {
@@ -72,8 +82,8 @@ class BookingWebhookTransformer extends Transformer {
 	static run(payload) {
 		const booking = {};
 
-		booking.startTime = payload.slot ? payload.slot.dates.start : null;
-		booking.endTime = payload.slot ? payload.slot.dates.end : null;
+		booking.startTime = payload.slot ? moment(payload.slot.dates.start).toISOString() : null;
+		booking.endTime = payload.slot ? moment(payload.slot.dates.end).toISOString() : null;
 		booking.id = payload.slot ? payload._id : null;
 		booking.tester = BookingWebhookTransformer._formatTester(payload);
 		booking.stock = BookingWebhookTransformer._formatStock(payload);

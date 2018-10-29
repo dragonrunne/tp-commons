@@ -1,4 +1,4 @@
-const { doUntil } = require('async');
+const { doUntil, waterfall } = require('async');
 
 class ETL {
 	constructor(config) {
@@ -13,21 +13,17 @@ class ETL {
 
 	process(payload) {
 		const data = JSON.parse(JSON.stringify(payload));
-		let newPayload = null;
-		let index = 0;
 
 		return new Promise((resolve, reject) => {
-			doUntil(
-				async () => {
-					newPayload = await this.pipeline[index].run(newPayload || data, this.config);
-					index += 1;
-				},
-				() => index >= this.pipeline.length,
-				(err) => {
+			waterfall(
+				this.pipeline.map((pipelineFunc) => (currentPayload, next) => pipelineFunc.run((next ? currentPayload : data), this.config)
+					.then((newPayload) => (next ? next(null, newPayload) : currentPayload(null, newPayload)))
+					.catch((err) => next(err))),
+				(err, processedPayload) => {
 					if (err) {
 						reject(err);
 					}
-					resolve(newPayload);
+					resolve(processedPayload);
 				},
 			);
 		});

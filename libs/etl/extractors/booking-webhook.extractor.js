@@ -38,7 +38,7 @@ class BookingWebhookExtractor extends Extractor {
 					.then((product) => {
 						stock.product = product;
 						return stock;
-					}),)
+					}))
 			: Promise.resolve(null);
 	}
 
