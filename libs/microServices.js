@@ -46,6 +46,11 @@ const SLOT = {
 	name: 'slots',
 };
 
+const FEEDBACK = {
+	url:  process.env.TP_BM_URL || 'http://localhost:3002',
+	name: 'feedbacks',
+};
+
 /**
  * TP_UM
  */
@@ -201,6 +206,10 @@ module.exports = {
 	SLOT: {
 		url:  url.resolve(SLOT.url, SLOT.name),
 		name: SLOT.name,
+	},
+	FEEDBACK: {
+		url:  url.resolve(FEEDBACK.url, FEEDBACK.name),
+		name: FEEDBACK.name,
 	},
 
 	AFFILIATE: {
