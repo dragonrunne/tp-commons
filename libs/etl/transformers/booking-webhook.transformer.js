@@ -41,7 +41,7 @@ class BookingWebhookTransformer extends Transformer {
 	}
 
 	static _formatTester(payload) {
-		const userCustomFieldRestricted = ['gender', 'street', 'zipcode', 'city', 'language', 'country', 'birth', 'marketingconsent'];
+		const userCustomFieldRestricted = ['gender', 'street', 'zipcode', 'city', 'language', 'country', 'birth'];
 
 		const genderField = payload.user.custom_fields.find((customField) => customField.key === 'gender');
 		const streetField = payload.user.custom_fields.find((customField) => customField.key === 'street');
@@ -50,7 +50,6 @@ class BookingWebhookTransformer extends Transformer {
 		const countryField = payload.user.custom_fields.find((customField) => customField.key === 'country');
 		const languageField = payload.user.custom_fields.find((customField) => customField.key === 'language');
 		const birthField = payload.user.custom_fields.find((customField) => customField.key === 'birth');
-		const marketingconsentField = payload.user.custom_fields.find((customField) => customField.key === 'marketingconsent');
 
 		const tester = {
 			gender:    genderField ? genderField.value : null,
@@ -63,11 +62,10 @@ class BookingWebhookTransformer extends Transformer {
 				city:    cityField ? cityField.value : null,
 				country: countryField ? countryField.value : null,
 			},
-			phone:            payload.user.phone,
-			id:               payload.user._id,
-			language:         languageField ? languageField.value : null,
-			birth:            birthField ? moment(birthField.value).toISOString() : null,
-			marketingconsent: marketingconsentField ? (marketingconsentField.value === 'true') : false,
+			phone:    payload.user.phone,
+			id:       payload.user._id,
+			language: languageField ? languageField.value : null,
+			birth:    birthField ? moment(birthField.value).toISOString() : null,
 		};
 
 		payload.user.custom_fields.forEach((customField) => {
