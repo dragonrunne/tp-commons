@@ -1,6 +1,6 @@
 {
   "name": "tp-commons",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Commons methods use by every micro service",
   "main": "index.js",
   "scripts": {
