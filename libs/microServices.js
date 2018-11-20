@@ -150,6 +150,11 @@ const MAIL = {
 	name: 'mails',
 };
 
+const SMS = {
+	url:  process.env.TP_CM_URL || 'http://localhost:3005',
+	name: 'sms',
+};
+
 const PDF = {
 	url:  process.env.TP_CM_URL || 'http://localhost:3005',
 	name: 'pdfs',
@@ -285,6 +290,10 @@ module.exports = {
 	MAIL: {
 		url:  url.resolve(MAIL.url, MAIL.name),
 		name: MAIL.name,
+	},
+	SMS: {
+		url:  url.resolve(SMS.url, SMS.name),
+		name: SMS.name,
 	},
 	PDF: {
 		url:  url.resolve(PDF.url, PDF.name),
