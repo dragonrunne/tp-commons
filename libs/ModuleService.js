@@ -78,7 +78,7 @@ class ModuleService {
 	}
 
 	getOne(query) {
-		return this.model.findOne(query);
+		return this.model.findOne(query).exec();
 	}
 
 	getById(id) {
