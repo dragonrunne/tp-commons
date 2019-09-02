@@ -22,7 +22,9 @@ class ModuleService {
 	_generateSearchQuery(query) {
 		if (query.q && this.model.schema._indexes.length === 1 &&
 			this.model.schema._indexes[0].length === 2) {
-			query.$or = [];
+			if(!query.$or) {
+				query.$or = [];
+			}
 			const indexes = this.model.schema._indexes[0][0];
 			Object.keys(indexes).forEach((key) => {
 				query.q.split(' ').forEach((q) => {
@@ -78,7 +80,7 @@ class ModuleService {
 	}
 
 	getOne(query) {
-		return this.model.findOne(query).exec();
+		return this.model.findOne(query).then();
 	}
 
 	getById(id) {
