@@ -16,7 +16,7 @@ class CSV {
 		return buffer instanceof Buffer;
 	}
 
-	static parse(stream, { joiSchema, delimiter = ',', transformer = (d) => d }) {
+	static parse(stream, { joiSchema, delimiter = ';', transformer = (d) => d }) {
 		const options = {
 			delimiter,
 			headers: true,
@@ -91,6 +91,7 @@ class CSV {
 				.writeToStream(fsStream, data, {
 					headers,
 					transform,
+					delimiter:';',
 				})
 				.on('error', (err) => {
 					throw new Error(err);
