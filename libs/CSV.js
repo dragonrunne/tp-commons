@@ -35,10 +35,10 @@ class CSV {
 				.on('error', (error) => {
 					reject(error);
 				})
-				.on('data', (data) => {
+				.on('data', async (data) => {
 					++currentLine;
 					data = _.mapValues(data, (value) => (value === '' ? null : value));
-					data = transformer(data);
+					data = await transformer(data);
 					Joi.validate(data, joiSchema, { convert: true }, (err, value) => {
 						if (err) {
 							errors.push({
