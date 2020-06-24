@@ -27,16 +27,17 @@ class ModuleService {
 			}
 			const indexes = this.model.schema._indexes[0][0];
 			Object.keys(indexes).forEach((key) => {
-				query.q.split(' ').forEach((q) => {
-					const o = {};
-					q = q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-					try {
-						o[key] = new RegExp(`${q}`, 'i');
-						query.$or.push(o);
-					} catch (e) {
-						// continue
-					}
-				});
+				const tabQ = query.q.split(' ');
+				for(let i = 0; i < tabQ.length; i++){
+					tabQ[i] = new RegExp( `${tabQ[i].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}`,'i');
+				}
+				const o = {};
+				try {
+					o[key]= { $all: tabQ };
+					query.$or.push(o);
+				} catch (e) {
+					// continue
+				}
 			});
 		}
 		Reflect.deleteProperty(query, 'q');
