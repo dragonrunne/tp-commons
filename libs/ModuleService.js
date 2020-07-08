@@ -155,6 +155,10 @@ class ModuleService {
 	count(query) {
 		return this.model.count(query);
 	}
+
+	getAggregate(query,aggregate,sort){
+		return this.model.aggregate([{"$match":query},aggregate,sort]);
+	}
 }
 
 module.exports = ModuleService;
