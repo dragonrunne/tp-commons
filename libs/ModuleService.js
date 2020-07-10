@@ -157,7 +157,7 @@ class ModuleService {
 	}
 
 	getAggregate(query,aggregate,sort,loockup){
-		return this.model.aggregate([{"$match":query},aggregate,sort,loockup]);
+		return this.model.aggregate([loockup,{"$match":query},sort,aggregate]);
 	}
 }
 
