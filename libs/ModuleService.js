@@ -147,13 +147,13 @@ class ModuleService {
 	}
 
 	exists(id) {
-		return this.model.count({
+		return this.model.countDocuments({
 			_id: id,
 		}).then((length) => !!length);
 	}
 
 	count(query) {
-		return this.model.count(query);
+		return this.model.countDocuments(query);
 	}
 
 	getAggregate(params){
