@@ -7,9 +7,7 @@ class Mongoose {
 	static connect(mongoUri) {
 		mongoose.Promise = global.Promise;
 
-		return mongoose.connect(mongoUri, {
-			useMongoClient: true,
-		});
+		return mongoose.connect(mongoUri);
 	}
 
 	static get Types() {
