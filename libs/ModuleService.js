@@ -1,6 +1,7 @@
 const { pick } = require('lodash');
 const algoliasearch = require('algoliasearch');
 
+
 let Algolia = null;
 if (process.env.ALGOLIA_APP_ID && process.env.ALGOLIA_API_KEY) {
 	Algolia = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY);
@@ -81,7 +82,7 @@ class ModuleService {
 	}
 
 	getOne(query) {
-		return this.model.findOne(query).then();
+		return this.model.findOne(query).cache(120).then();
 	}
 
 	getById(id) {
@@ -94,6 +95,7 @@ class ModuleService {
 		query = this._generateSearchQuery(query);
 		return this.model
 			.find(query, null, options)
+			.cache(120)
 			.limit(limit);
 	}
 
@@ -157,7 +159,7 @@ class ModuleService {
 	}
 
 	getAggregate(params){
-		return this.model.aggregate(params);
+		return this.model.aggregate(params).cache(120);
 	}
 }
 
