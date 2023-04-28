@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
-const cachegoose = require('cachegoose');
+//const cachegoose = require('cachegoose');
 
-cachegoose(mongoose);
+//cachegoose(mongoose);
 
 
 const providerEnum = ['fs', 'cloudinary'];
