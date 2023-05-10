@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
-//const cachegoose = require('cachegoose');
+const cachegoose = require('cachegoose');
 
-//cachegoose(mongoose);
+cachegoose(mongoose);
 
 
 const providerEnum = ['fs', 'cloudinary'];
@@ -12,6 +12,10 @@ class Mongoose {
 		mongoose.Promise = global.Promise;
 
 		return mongoose.connect(mongoUri);
+	}
+
+	static useDb(dbName) {
+		return mongoose.connection.useDb(dbName);
 	}
 
 	static get Types() {

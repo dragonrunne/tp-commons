@@ -28,7 +28,7 @@ module.exports = {
 					if (value === null || value === 'null') {
 						return null;
 					}
-					if (!mongoose.Types.isValidObjectId(value)) {
+					if (!mongoose.Types.ObjectId.isValid(value)) {
 						return this.createError('objectId.objectId', { v: value }, state, options);
 					}
 
