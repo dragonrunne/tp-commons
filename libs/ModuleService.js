@@ -82,7 +82,7 @@ class ModuleService {
 	}
 
 	getOne(query) {
-		return this.model.findOne(query).cache(120).then();
+		return this.model.findOne(query).then();
 	}
 
 	getById(id) {
@@ -95,7 +95,6 @@ class ModuleService {
 		query = this._generateSearchQuery(query);
 		return this.model
 			.find(query, null, options)
-			.cache(120)
 			.limit(limit);
 	}
 
@@ -159,7 +158,7 @@ class ModuleService {
 	}
 
 	getAggregate(params){
-		return this.model.aggregate(params).cache(120);
+		return this.model.aggregate(params);
 	}
 }
 
